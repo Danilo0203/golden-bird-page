@@ -1,0 +1,182 @@
+[
+  {
+    "slug": "periquitos",
+    "id": "657fc97a-9d74-5fe9-8d85-f7be7c13af4b",
+    "file": "periquitos.webp",
+    "width": 1600,
+    "height": 1191,
+    "bytes": 97620,
+    "alt": "Periquitos de compañía posados juntos"
+  },
+  {
+    "slug": "ninfa",
+    "id": "c8e778b6-1ac2-5255-8a23-a820f34aeaea",
+    "file": "ninfa.webp",
+    "width": 1066,
+    "height": 1600,
+    "bytes": 65970,
+    "alt": "Ninfa de cresta amarilla mirando a cámara"
+  },
+  {
+    "slug": "agapornis",
+    "id": "6e977703-7976-51f9-bb37-4efe2b450c76",
+    "file": "agapornis.webp",
+    "width": 1600,
+    "height": 1066,
+    "bytes": 68828,
+    "alt": "Agapornis de colores intensos"
+  },
+  {
+    "slug": "logo",
+    "id": "b951bb2e-51eb-51ba-907e-f788d8843cab",
+    "file": "logo.webp",
+    "width": 1254,
+    "height": 1254,
+    "bytes": 87286,
+    "alt": "Golden Bird — Mascotas y más"
+  },
+  {
+    "slug": "cockatiel",
+    "id": "150138f4-669f-5eaa-8b17-4b23c0b2fd19",
+    "file": "cockatiel.webp",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 153786,
+    "alt": "Ninfa junto al alimento destacado"
+  },
+  {
+    "slug": "prod-dog-harness",
+    "id": "de725f0c-2f75-5355-a38e-a5b51911c56d",
+    "file": "prod-dog-harness.webp",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 68632,
+    "alt": "Arnés ajustable para perro"
+  },
+  {
+    "slug": "prod-dog-food-bag",
+    "id": "c5fb8e26-0896-5b4b-ae7a-c0eaeace6b12",
+    "file": "prod-dog-food-bag.webp",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 41318,
+    "alt": "Bolsa de alimento seco para perro"
+  },
+  {
+    "slug": "prod-pet-carrier",
+    "id": "3c6fad68-ca80-518a-bb27-a404d9b9cd8f",
+    "file": "prod-pet-carrier.webp",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 32252,
+    "alt": "Transportadora de viaje para mascotas"
+  },
+  {
+    "slug": "prod-bird-seed-pouch",
+    "id": "9baec54e-677b-5022-a2d2-cd207121cdf1",
+    "file": "prod-bird-seed-pouch.webp",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 78274,
+    "alt": "Bolsa de mezcla de semillas para aves"
+  },
+  {
+    "slug": "prod-canned-food",
+    "id": "b4ba461a-a5d1-5b5a-a6d1-0138885249df",
+    "file": "prod-canned-food.webp",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 66658,
+    "alt": "Lata de alimento húmedo para gato"
+  },
+  {
+    "slug": "prod-pet-bowl",
+    "id": "200961f3-3fa2-5639-b13f-b15876b6cf29",
+    "file": "prod-pet-bowl.webp",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 27552,
+    "alt": "Comedero de acero con lunares"
+  },
+  {
+    "slug": "prod-pet-vitamins",
+    "id": "42f47d43-3247-5266-9ee5-cc6fa548407c",
+    "file": "prod-pet-vitamins.webp",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 33966,
+    "alt": "Frasco de multivitamínico canino"
+  },
+  {
+    "slug": "prod-paper-bag-food",
+    "id": "0b9f4ea0-ca95-5c70-8f7e-577bc3a16973",
+    "file": "prod-paper-bag-food.webp",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 48086,
+    "alt": "Bolsa de papel con bocaditos horneados"
+  },
+  {
+    "slug": "pet-perros",
+    "id": "b8c06046-179f-5f90-af16-859f9cc7853d",
+    "file": "pet-perros.webp",
+    "width": 496,
+    "height": 793,
+    "bytes": 20052,
+    "alt": "Perro de compañía"
+  },
+  {
+    "slug": "pet-gatos",
+    "id": "9a77780f-cd2c-5e7b-a8a4-cbd5a1940bce",
+    "file": "pet-gatos.webp",
+    "width": 496,
+    "height": 793,
+    "bytes": 28016,
+    "alt": "Gato de compañía"
+  },
+  {
+    "slug": "pet-conejos",
+    "id": "2a8a01bc-ce2d-572b-9490-bec54b2fd6e5",
+    "file": "pet-conejos.webp",
+    "width": 495,
+    "height": 793,
+    "bytes": 12536,
+    "alt": "Conejo de compañía"
+  },
+  {
+    "slug": "pet-hamsteres",
+    "id": "9b02912b-41bb-5f5e-9440-f421b1cbc064",
+    "file": "pet-hamsteres.webp",
+    "width": 496,
+    "height": 793,
+    "bytes": 10298,
+    "alt": "Hámster de compañía"
+  },
+  {
+    "slug": "food-seeds",
+    "id": "58c9ae04-d8db-583f-aea4-6962c8a5ee9d",
+    "file": "food-seeds.webp",
+    "width": 512,
+    "height": 512,
+    "bytes": 23606,
+    "alt": "Mezcla de semillas seleccionadas"
+  },
+  {
+    "slug": "food-pellets",
+    "id": "2115a876-58c5-57be-bce9-a2f1dc2b5737",
+    "file": "food-pellets.webp",
+    "width": 512,
+    "height": 512,
+    "bytes": 16738,
+    "alt": "Pellets nutricionales para aves"
+  },
+  {
+    "slug": "food-millet",
+    "id": "db40e135-b434-5fe0-81f0-4c163a730199",
+    "file": "food-millet.webp",
+    "width": 512,
+    "height": 512,
+    "bytes": 16920,
+    "alt": "Espigas de mijo dorado"
+  }
+]
