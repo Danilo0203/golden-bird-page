@@ -1,0 +1,180 @@
+---
+import DecorativeSquiggle from "../../common/DecorativeSquiggle.astro";
+import WaveDivider from "../../common/WaveDivider.astro";
+import { catalogFilters, catalogProducts } from "../../../data/home";
+import CatalogProductCard from "./CatalogProductCard.astro";
+---
+
+<section
+  class="products relative isolate w-full max-w-none bg-[#f1d299] px-[max(6%,calc((100vw-1320px)/2))] pt-[105px] pb-[100px] [scroll-margin-top:1rem] max-[700px]:px-[7%] max-[700px]:pt-[75px] max-[700px]:pb-[78px]"
+  id="productos"
+  aria-labelledby="products-title"
+>
+  <span
+    id="cuidado"
+    class="section-anchor absolute top-0 [scroll-margin-top:calc(var(--header-height)+28px)]"
+    aria-hidden="true"></span>
+  <WaveDivider position="top" />
+
+  <div
+    class="decor-layer pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+    aria-hidden="true"
+  >
+    <span
+      class="outline-circle absolute top-[30%] left-[-82px] size-[140px] rounded-full border-[12px] border-[#c6975680]"
+    ></span>
+    <DecorativeSquiggle
+      class="top-[32%] right-[-12px] rotate-[95deg] text-[#fff9]"
+    />
+  </div>
+
+  <!-- Header with Title & Filter Buttons (matching reference mockup) -->
+  <div
+    class="reveal mb-9 flex flex-col lg:flex-row lg:items-center justify-between gap-5"
+  >
+    <div class="relative">
+      <!-- Decorative rays above title -->
+      <span
+        class="mb-1 inline-block text-lg font-black text-orange select-none"
+        aria-hidden="true"
+      >
+        彡
+      </span>
+      <h2
+        id="products-title"
+        class="text-[clamp(2.1rem,3.4vw,3.2rem)] leading-[1.12] font-black tracking-[-.04em] text-ink"
+      >
+        Productos recién agregados
+      </h2>
+    </div>
+
+    <!-- Filter Pills Container -->
+    <div
+      class="filter-bar flex flex-wrap items-center gap-2 sm:gap-2.5"
+      role="group"
+      aria-label="Filtrar productos por categoría"
+    >
+      {
+        catalogFilters.map((filter, index) => (
+          <button
+            type="button"
+            class:list={[
+              "filter-btn rounded-full px-4 py-2 text-xs sm:text-[.8125rem] font-bold transition-all duration-200 cursor-pointer border select-none focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-orange",
+              index === 0
+                ? "active bg-orange text-white border-orange shadow-xs"
+                : "bg-white/90 text-[#696057] border-line/80 hover:border-orange hover:text-orange hover:bg-white",
+            ]}
+            data-filter={filter.id}
+            aria-pressed={index === 0 ? "true" : "false"}
+          >
+            {filter.label}
+          </button>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- 4x2 Responsive Grid -->
+  <div
+    id="catalog-grid"
+    class="reveal grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-start gap-4 sm:gap-5 lg:gap-6"
+  >
+    {catalogProducts.map((product) => <CatalogProductCard item={product} />)}
+  </div>
+
+  <!-- Empty state fallback (hidden by default) -->
+  <div
+    id="catalog-empty"
+    class="hidden py-12 text-center"
+    role="status"
+    aria-live="polite"
+  >
+    <p class="font-display text-lg font-bold text-ink">
+      No se encontraron productos en esta categoría.
+    </p>
+    <p class="mt-1 text-sm text-muted">
+      Selecciona otra categoría o vuelve a "Todos".
+    </p>
+  </div>
+  <WaveDivider position="bottom" />
+</section>
+
+<script>
+  function setupCatalogFilters() {
+    const section = document.querySelector(".products");
+    if (!section) return;
+
+    const filterButtons =
+      section.querySelectorAll<HTMLButtonElement>(".filter-btn");
+    const items = section.querySelectorAll<HTMLElement>(".catalog-item");
+    const emptyNotice = section.querySelector<HTMLElement>("#catalog-empty");
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const targetFilter = btn.dataset.filter || "all";
+
+        // Update active states
+        filterButtons.forEach((b) => {
+          b.setAttribute("aria-pressed", "false");
+          b.classList.remove(
+            "active",
+            "bg-orange",
+            "text-white",
+            "border-orange",
+            "shadow-xs",
+          );
+          b.classList.add("bg-white/90", "text-[#696057]", "border-line/80");
+        });
+
+        btn.setAttribute("aria-pressed", "true");
+        btn.classList.add(
+          "active",
+          "bg-orange",
+          "text-white",
+          "border-orange",
+          "shadow-xs",
+        );
+        btn.classList.remove("bg-white/90", "text-[#696057]", "border-line/80");
+
+        let matchCount = 0;
+
+        items.forEach((item) => {
+          const categories = (item.dataset.categories || "").split(" ");
+          const matches =
+            targetFilter === "all" || categories.includes(targetFilter);
+
+          if (matches) {
+            matchCount++;
+            item.style.display = "";
+            requestAnimationFrame(() => {
+              item.style.opacity = "1";
+              item.style.transform = "scale(1)";
+            });
+          } else {
+            item.style.opacity = "0";
+            item.style.transform = "scale(0.96)";
+            setTimeout(() => {
+              if (item.style.opacity === "0") {
+                item.style.display = "none";
+              }
+            }, 200);
+          }
+        });
+
+        if (emptyNotice) {
+          emptyNotice.style.display = matchCount === 0 ? "block" : "none";
+        }
+      });
+    });
+  }
+
+  setupCatalogFilters();
+  document.addEventListener("astro:page-load", setupCatalogFilters);
+</script>
+
+<style>
+  :global(.catalog-item) {
+    transition: opacity 0.28s ease, transform 0.28s ease, box-shadow 0.3s ease;
+    will-change: opacity, transform;
+  }
+</style>

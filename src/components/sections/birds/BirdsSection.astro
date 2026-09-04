@@ -1,0 +1,40 @@
+---
+import DecorativeSquiggle from "../../common/DecorativeSquiggle.astro";
+import SectionHeading from "../../common/SectionHeading.astro";
+import { birds } from "../../../data/home";
+import BirdCard from "./BirdCard.astro";
+---
+
+<section
+  class="birds relative isolate mx-auto max-w-[1360px] px-[6%] pt-[42px] pb-[82px] [scroll-margin-top:1rem] max-[700px]:px-[7%] max-[700px]:pt-[45px] max-[700px]:pb-10"
+  id="aves"
+  aria-labelledby="birds-title"
+>
+  <div
+    class="decor-layer pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+    aria-hidden="true"
+  >
+    <span
+      class="outline-circle absolute top-[90px] right-[-35px] size-[90px] rounded-full border-[5px] border-[#dbb07677]"
+    ></span>
+    <DecorativeSquiggle
+      class="bottom-[150px] left-[-25px] w-20 rotate-[80deg] text-[#b45c3b88]"
+    />
+  </div>
+  <SectionHeading eyebrow="UN MUNDO POR DESCUBRIR" titleId="birds-title">
+    <Fragment slot="title"
+      >Pequeñas aves.<br /><span
+        class="font-display font-black tracking-[-.035em] text-orange"
+        >Grandes personalidades.</span
+      ></Fragment
+    >
+    <Fragment slot="description"
+      >Conoce algunas aves de compañía<br />y descubre qué las hace especiales.</Fragment
+    >
+  </SectionHeading>
+  <div
+    class="bird-grid grid grid-cols-3 items-start gap-8 max-[1100px]:gap-[21px] max-[700px]:grid-cols-1 max-[700px]:gap-[27px]"
+  >
+    {birds.map((bird, index) => <BirdCard bird={bird} index={index} />)}
+  </div>
+</section>

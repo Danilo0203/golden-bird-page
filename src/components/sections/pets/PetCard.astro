@@ -1,0 +1,55 @@
+---
+import type { Pet } from '../../../data/home';
+
+interface Props {
+  pet: Pet;
+  index: number;
+}
+
+const { pet, index } = Astro.props;
+const photoVariants = [
+  'border-[#f3dfbd] rounded-[45%_55%_52%_48%/54%_44%_56%_46%]',
+  'border-[#edcabc] rounded-[48%_52%_54%_46%/53%_47%_51%_49%]',
+  'border-[#e0d9cd] rounded-[53%_47%_44%_56%/48%_52%_54%_46%]',
+  'border-[#efd8a9] rounded-[47%_53%_52%_48%/52%_48%_53%_47%]',
+  'border-[#edcabc] rounded-[45%_55%_52%_48%/54%_44%_56%_46%]',
+] as const;
+const spritePositions: Record<Pet['photo'], string> = {
+  aves: '',
+  perros: 'left-0',
+  gatos: 'left-[-100%]',
+  conejos: 'left-[-200%]',
+  hamsteres: 'left-[-300%]',
+};
+---
+
+<article class="pet-card group reveal min-w-0 text-center cursor-pointer max-[700px]:last:col-span-full max-[700px]:last:w-[48%] max-[700px]:last:justify-self-center">
+  <div
+    class:list={[
+      "pet-photo relative aspect-square w-full overflow-hidden border-8 bg-white transition-[border-radius,transform,box-shadow] duration-500 ease-out group-hover:-translate-y-1.5 group-hover:rounded-[50%] hover:-translate-y-1.5 hover:rounded-[50%] max-[1100px]:border-[6px]",
+      photoVariants[index],
+    ]}
+  >
+    {pet.photo === 'aves' ? (
+      <img class="absolute top-0 size-full object-cover" src="/images/periquitos.jpg" alt="Periquitos de compañía" width="3112" height="2316" loading="lazy" />
+    ) : (
+      <span class="pet-crop absolute top-0 left-[18.74%] h-full w-[62.52%] overflow-hidden">
+        <img class:list={["absolute top-0 h-full w-[400%] max-w-none", spritePositions[pet.photo]]} src="/images/pet-categories.png" alt={`${pet.name} — imagen ilustrativa`} width="1983" height="793" loading="lazy" />
+      </span>
+    )}
+  </div>
+  <h3 class="mt-[18px] text-[1.4rem] font-black transition-colors duration-300 group-hover:text-orange max-[1100px]:text-[1.25rem] max-[700px]:mt-[13px] max-[700px]:text-[1.35rem]">{pet.name}</h3>
+  <p class="mt-1.5 text-sm leading-[1.6] text-muted">{pet.detail}</p>
+</article>
+
+<style>
+  .pet-photo {
+    transition: border-radius 0.45s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+    will-change: transform, border-radius;
+  }
+  .pet-card:hover .pet-photo {
+    transform: translateY(-5px);
+    border-radius: 50% !important;
+    box-shadow: 0 12px 28px rgba(138, 85, 44, 0.14);
+  }
+</style>

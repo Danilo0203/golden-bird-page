@@ -1,0 +1,26 @@
+---
+const linkClasses = "relative py-[13px] after:absolute after:inset-x-0 after:bottom-[5px] after:h-[3px] after:origin-center after:scale-x-0 after:rounded-[3px] after:bg-gold after:transition-transform after:duration-200 hover:after:scale-x-100 [&[aria-current]]:after:scale-x-100 focus-visible:outline-[3px] focus-visible:outline-offset-[5px] focus-visible:outline-orange";
+---
+
+<header class="header sticky top-3 z-[100] mx-auto flex min-h-[94px] w-[90%] max-w-[1330px] items-center justify-between gap-8 rounded-[100px] border border-white bg-[#fffffff7] px-[25px] py-[9px] shadow-[0_8px_25px_#50391f10] backdrop-blur-[18px] transition-shadow duration-250 [&.scrolled]:border-line [&.scrolled]:shadow-[0_10px_32px_#24282a26] max-[1100px]:px-5 max-[1000px]:min-h-[82px] max-[1000px]:w-[92%] max-[1000px]:gap-4 max-[1000px]:px-[18px] max-[1000px]:py-1.5 max-[700px]:top-2 max-[700px]:min-h-[76px] max-[700px]:w-[94%] max-[700px]:px-[13px] max-[700px]:py-[5px] max-[380px]:min-h-[70px] max-[380px]:px-2.5">
+  <a class="brand flex shrink-0 items-center gap-[9px] whitespace-nowrap font-brand text-[1.65rem] leading-[1.1] font-semibold focus-visible:outline-[3px] focus-visible:outline-offset-[5px] focus-visible:outline-orange max-[1100px]:text-[1.45rem] max-[1000px]:text-[1.55rem] max-[700px]:gap-1.5 max-[700px]:text-[1.4rem] max-[380px]:text-[1.25rem]" href="/#inicio" aria-label="Golden Bird, inicio">
+    <img class="brand-logo size-[66px] shrink-0 rounded-full object-contain max-[1000px]:size-[62px] max-[700px]:size-[58px] max-[380px]:size-[49px]" src="/images/golden-bird-logo.png" alt="" width="1254" height="1254" />
+    <span>
+      Golden Bird
+      <small class="mt-1 block font-sans text-xs leading-[1.8] font-semibold tracking-[.17em] text-[#816139] max-[700px]:tracking-[.1em] max-[380px]:tracking-[.05em]">MASCOTAS Y MÁS</small>
+    </span>
+  </a>
+  <button class="menu-toggle hidden focus-visible:outline-[3px] focus-visible:outline-offset-[5px] focus-visible:outline-orange max-[1000px]:flex max-[1000px]:size-[46px] max-[1000px]:shrink-0 max-[1000px]:flex-col max-[1000px]:items-center max-[1000px]:justify-center max-[1000px]:gap-1.5 max-[1000px]:rounded-full max-[1000px]:border-0 max-[1000px]:bg-charcoal max-[1000px]:p-2.5 max-[1000px]:[&_span]:h-0.5 max-[1000px]:[&_span]:w-[19px] max-[1000px]:[&_span]:bg-gold-light max-[1000px]:[&_span]:transition-transform max-[1000px]:[&[aria-expanded=true]_span:first-child]:translate-y-1 max-[1000px]:[&[aria-expanded=true]_span:first-child]:rotate-45 max-[1000px]:[&[aria-expanded=true]_span:last-child]:-translate-y-1 max-[1000px]:[&[aria-expanded=true]_span:last-child]:-rotate-45 max-[700px]:size-[42px]" aria-controls="navigation" aria-expanded="false" aria-label="Abrir menú">
+    <span></span><span></span>
+  </button>
+  <nav id="navigation" class="flex shrink-0 items-center gap-[19px] text-[.9375rem] font-semibold max-[1100px]:gap-[17px] max-[1000px]:absolute max-[1000px]:top-[calc(100%+10px)] max-[1000px]:right-0 max-[1000px]:left-0 max-[1000px]:hidden max-[1000px]:max-h-[calc(100dvh-var(--header-height)-48px)] max-[1000px]:items-stretch max-[1000px]:overflow-auto max-[1000px]:rounded-3xl max-[1000px]:border max-[1000px]:border-line max-[1000px]:bg-white max-[1000px]:px-6 max-[1000px]:py-[19px] max-[1000px]:shadow-[0_15px_35px_#24282a24] max-[1000px]:[&.open]:flex max-[1000px]:[&.open]:flex-col max-[1000px]:[&.open]:gap-[5px]" aria-label="Navegación principal">
+    <a class={linkClasses} href="/#inicio" aria-current="location">Inicio</a>
+    <a class={linkClasses} href="/#mascotas">Mascotas</a>
+    <a class={linkClasses} href="/#nosotros">Nosotros</a>
+    <a class={linkClasses} href="/#aves">Aves</a>
+    <a class={linkClasses} href="/#alimentos">Alimentos</a>
+    <a class:list={[linkClasses, "rounded-[30px] bg-charcoal px-5 py-3.5 text-white after:right-5 after:left-5 max-[1000px]:mt-2 max-[1000px]:text-center"]} href="/#productos">
+      Productos <span class="ml-3" aria-hidden="true">↗</span>
+    </a>
+  </nav>
+</header>

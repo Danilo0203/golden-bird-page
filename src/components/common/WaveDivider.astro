@@ -1,0 +1,20 @@
+---
+interface Props {
+  position: 'top' | 'bottom';
+}
+
+const { position } = Astro.props;
+---
+
+<svg
+  class:list={[
+    "wave pointer-events-none absolute left-0 z-[3] block h-[62px] w-full fill-paper max-[700px]:h-[39px]",
+    position === 'top' ? 'top-[-1px] rotate-180' : 'bottom-[-1px]',
+  ]}
+  viewBox="0 0 1440 80"
+  preserveAspectRatio="none"
+  aria-hidden="true"
+  focusable="false"
+>
+  <path d="M0 35C60 0 60 0 120 35S180 70 240 35S300 0 360 35S420 70 480 35S540 0 600 35S660 70 720 35S780 0 840 35S900 70 960 35S1020 0 1080 35S1140 70 1200 35S1260 0 1320 35S1380 70 1440 35V80H0Z" />
+</svg>

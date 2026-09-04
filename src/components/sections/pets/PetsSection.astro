@@ -1,0 +1,28 @@
+---
+import SectionHeading from "../../common/SectionHeading.astro";
+import { pets } from "../../../data/home";
+import PetCard from "./PetCard.astro";
+---
+
+<section
+  class="pets mx-auto max-w-[1360px] px-[6%] pt-[45px] pb-[48px] [scroll-margin-top:1rem] max-[700px]:px-[7%] max-[700px]:pt-8 max-[700px]:pb-[25px]"
+  id="mascotas"
+  aria-labelledby="pets-title"
+>
+  <SectionHeading eyebrow="CADA COMPAÑERO TIENE SU MUNDO" titleId="pets-title">
+    <Fragment slot="title"
+      >Pequeños, grandes.<br /><span
+        class="font-display font-black tracking-[-.035em] text-orange"
+        >Todos especiales.</span
+      ></Fragment
+    >
+    <Fragment slot="description"
+      >Un vistazo al mundo de las mascotas y sus diferentes personalidades.</Fragment
+    >
+  </SectionHeading>
+  <div
+    class="pets-grid grid grid-cols-5 items-start gap-[25px] max-[1100px]:gap-4 max-[700px]:grid-cols-2 max-[700px]:gap-x-[19px] max-[700px]:gap-y-[27px]"
+  >
+    {pets.map((pet, index) => <PetCard pet={pet} index={index} />)}
+  </div>
+</section>

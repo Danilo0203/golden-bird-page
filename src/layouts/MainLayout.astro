@@ -1,0 +1,53 @@
+---
+import BackToTopButton from "../components/layout/BackToTopButton.astro";
+import SiteFooter from "../components/layout/SiteFooter.astro";
+import SiteHeader from "../components/layout/SiteHeader.astro";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html
+  lang="es"
+  style="--header-height: 94px;"
+  class="scroll-smooth bg-paper [scroll-padding-top:calc(var(--header-height)+28px)] motion-reduce:scroll-auto"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#edc080" />
+    <title>{title}</title>
+    <link rel="icon" href="/images/golden-bird-logo.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;600;650;700&family=Nunito:wght@600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="m-0 bg-gold-light pt-4 font-sans text-ink selection:bg-charcoal selection:text-white">
+    <a class="fixed -top-[100px] left-4 z-[200] bg-white p-3.5 focus:top-2.5 focus-visible:outline-[3px] focus-visible:outline-offset-[5px] focus-visible:outline-orange" href="#contenido">Saltar al contenido</a>
+    <SiteHeader />
+    <slot />
+    <SiteFooter />
+    <BackToTopButton />
+
+    <script>
+      import { initializeNavigation } from "../scripts/navigation";
+
+      initializeNavigation();
+
+      // Navigation remains available if the optional animation chunk fails.
+      void import("../scripts/motion")
+        .then(({ initializeMotion }) => initializeMotion())
+        .catch(() => {});
+    </script>
+  </body>
+</html>

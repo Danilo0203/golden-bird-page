@@ -1,0 +1,9 @@
+---
+const linkClasses = "flex items-center justify-between gap-7 rounded-[40px] px-[23px] py-4 text-[.9375rem] font-semibold transition-[background,transform] duration-200 hover:-translate-y-1 hover:bg-gold-light focus-visible:outline-[3px] focus-visible:outline-offset-[5px] focus-visible:outline-orange max-[700px]:gap-4 max-[700px]:px-[17px] max-[700px]:py-[13px] max-[700px]:text-sm [&_span]:text-[1.1rem]";
+---
+
+<nav class="category-bar mx-auto mt-[21px] flex max-w-[1100px] flex-wrap items-center justify-center gap-[15px] px-[5%] py-3 max-[700px]:mt-[15px] max-[700px]:gap-2.5 max-[700px]:px-[5%] max-[700px]:py-2" aria-label="Categorías de Golden Bird">
+  <a class:list={[linkClasses, "bg-[#faedd8]"]} href="#aves">Aves de compañía <span aria-hidden="true">↗</span></a>
+  <a class:list={[linkClasses, "bg-[#f9e0d5]"]} href="#alimentos">Alimentos <span aria-hidden="true">↗</span></a>
+  <a class:list={[linkClasses, "bg-[#e9e5df]"]} href="#productos">Jaulas y accesorios <span aria-hidden="true">↗</span></a>
+</nav>

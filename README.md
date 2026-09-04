@@ -1,43 +1,51 @@
-# Astro Starter Kit: Minimal
+# Golden Bird
 
-```sh
-pnpm create astro@latest -- --template minimal
-```
+Sitio estático construido con Astro, TypeScript, Tailwind CSS y GSAP.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## Estructura
 
 ```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+src/
+├── components/
+│   ├── common/             # Componentes visuales reutilizables
+│   ├── layout/             # Header, footer y elementos globales
+│   └── sections/           # Secciones agrupadas por página o dominio
+│       ├── about/
+│       ├── birds/
+│       ├── catalog/
+│       ├── categories/
+│       ├── closing/
+│       ├── food/
+│       ├── hero/
+│       ├── pets/
+│       └── products/
+├── data/                   # Datos y contratos TypeScript
+├── layouts/                # Estructura compartida entre páginas
+├── pages/                  # Rutas públicas de Astro
+├── scripts/                # Comportamiento del navegador
+└── styles/                 # Estilos globales y Tailwind
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Los archivos estáticos que no necesitan procesamiento viven en `public/`.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Convenciones para crecer
 
-Any static assets, like images, can be placed in the `public/` directory.
+- Cada página nueva se crea dentro de `src/pages/`.
+- Las páginas deben componer componentes; no deben concentrar todo el HTML.
+- Las secciones propias de una página se agrupan en `src/components/sections/<seccion>/`.
+- Los componentes reutilizables entre varias páginas van en `src/components/common/`.
+- La estructura compartida del sitio va en `src/components/layout/` y `src/layouts/`.
+- Los datos estáticos y sus tipos se mantienen en `src/data/`.
+- El código que usa APIs del navegador se mantiene en `src/scripts/`.
 
-## 🧞 Commands
+## Comandos
 
-All commands are run from the root of the project, from a terminal:
+```sh
+pnpm install
+pnpm dev
+pnpm typecheck
+pnpm build
+pnpm preview
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+`pnpm build` ejecuta primero la comprobación de TypeScript y después genera el sitio estático en `dist/`.

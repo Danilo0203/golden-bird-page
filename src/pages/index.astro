@@ -1,151 +1,29 @@
 ---
-import '../styles/golden-bird.css';
-const birds = [
-  {name:'Periquitos', scientific:'Melopsittacus undulatus', image:'periquitos.jpg', number:'01', description:'Pequeños, sociables y llenos de color. Una presencia alegre que convierte los días en compañía.'},
-  {name:'Ninfas', scientific:'Nymphicus hollandicus', image:'ninfa.jpg', number:'02', description:'Una cresta inconfundible y mucha personalidad. Aves curiosas que disfrutan explorar e interactuar.'},
-  {name:'Agapornis', scientific:'Agapornis', image:'agapornis.jpg', number:'03', description:'Colores intensos y energía en pequeño formato. Compañeros activos con un carácter muy especial.'},
-];
-const pets = [
-  { name: 'Aves', detail: 'Plumas y personalidad', photo: 'aves' },
-  { name: 'Perros', detail: 'Compañeros de aventuras', photo: 'perros' },
-  { name: 'Gatos', detail: 'Curiosidad y compañía', photo: 'gatos' },
-  { name: 'Conejos', detail: 'Pequeños y encantadores', photo: 'conejos' },
-  { name: 'Hámsteres', detail: 'Un pequeño gran mundo', photo: 'hamsteres' },
-];
-const foods = [
-  { name: 'Mezcla de semillas', kind: 'SEMILLAS', photo: 'seeds', description: 'Diferentes semillas en una presentación práctica para aves.' },
-  { name: 'Alimento en pellets', kind: 'ALIMENTO PARA AVES', photo: 'pellets', description: 'Un ejemplo de alimento en gránulos. La fórmula depende de cada especie.' },
-  { name: 'Mijo en espiga', kind: 'COMPLEMENTOS', photo: 'millet', description: 'Espigas naturales para complementar sus momentos de exploración.' },
-];
-const accessories = [
-  { name: 'Jaula para aves', kind: 'SU ESPACIO', photo: 'cage', description: 'Un ejemplo de jaula con perchas y acceso para la limpieza.' },
-  { name: 'Comedero y bebedero', kind: 'CUIDADO DIARIO', photo: 'feeder', description: 'Recipientes prácticos para servir agua y alimento.' },
-  { name: 'Juguetes y escaleras', kind: 'JUEGO Y ACTIVIDAD', photo: 'toy', description: 'Accesorios de madera para explorar y enriquecer su entorno.' },
-];
+import AboutSection from '../components/sections/about/AboutSection.astro';
+import BirdsSection from '../components/sections/birds/BirdsSection.astro';
+import CategoryNavigation from '../components/sections/categories/CategoryNavigation.astro';
+import ClosingSection from '../components/sections/closing/ClosingSection.astro';
+import FoodSection from '../components/sections/food/FoodSection.astro';
+import HeroSection from '../components/sections/hero/HeroSection.astro';
+import PetsSection from '../components/sections/pets/PetsSection.astro';
+import ProductsSection from '../components/sections/products/ProductsSection.astro';
+import MainLayout from '../layouts/MainLayout.astro';
 
+const page = {
+  title: 'Golden Bird — Aves, mascotas y más',
+  description: 'Conoce el mundo de Golden Bird: aves de compañía, alimentos, jaulas y accesorios para tus mascotas.',
+};
 ---
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Conoce el mundo de Golden Bird: aves de compañía, alimentos, jaulas y accesorios para tus mascotas." />
-    <meta name="theme-color" content="#edc080" />
-    <title>Golden Bird — Aves, mascotas y más</title>
-    <link rel="icon" href="/images/golden-bird-logo.png" type="image/png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;600;650;700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet" />
-  </head>
-  <body>
-    <a class="skip-link" href="#contenido">Saltar al contenido</a>
-    <header class="header">
-      <a class="brand" href="#inicio" aria-label="Golden Bird, inicio"><img class="brand-logo" src="/images/golden-bird-logo.png" alt="" width="1254" height="1254" /><span>Golden Bird<small>MASCOTAS Y MÁS</small></span></a>
-      <button class="menu-toggle" aria-controls="navigation" aria-expanded="false" aria-label="Abrir menú"><span></span><span></span></button>
-      <nav id="navigation" aria-label="Navegación principal"><a href="#inicio" aria-current="location">Inicio</a><a href="#mascotas">Mascotas</a><a href="#nosotros">Nosotros</a><a href="#aves">Aves</a><a href="#alimentos">Alimentos</a><a href="#productos">Productos <span aria-hidden="true">↗</span></a></nav>
-    </header>
-    <main id="contenido">
-      <section class="hero" id="inicio" aria-labelledby="hero-title"><div class="decor-layer" aria-hidden="true"><span class="outline-circle circle-one"></span><span class="outline-circle circle-two"></span><span class="small-dot"></span><svg class="squiggle" viewBox="0 0 150 55" aria-hidden="true" focusable="false"><path d="M5 28C20 0 35 0 50 28S80 55 95 28S125 0 145 28" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></svg></div>
-        <div class="hero-copy">
-          <p class="eyebrow"><span></span>BIENVENIDO A GOLDEN BIRD</p>
-          <h1 id="hero-title" tabindex="-1">La alegría<br />tiene <span class="serif">alas.</span></h1>
-          <p class="hero-description">Aves, mascotas y todo lo que necesitas para llenar su mundo de bienestar.</p>
-          <a class="button" href="#aves">Encuentra tu inspiración <span aria-hidden="true">↗</span></a>
-          <div class="hero-note"><span class="tiny-star" aria-hidden="true">✳</span><p>Pequeñas compañías.<br /><strong>Grandes momentos.</strong></p></div>
-        </div>
-        <div class="hero-visual"><img class="hero-image" src="/images/periquitos.jpg" alt="Dos periquitos verdes y amarillos posados juntos" width="3112" height="2316" fetchpriority="high" /><figure class="companion-photo"><img src="/images/agapornis.jpg" alt="Dos agapornis juntos" width="2225" height="1482" /><figcaption>¡En buena compañía!</figcaption></figure><img class="ninfa-bubble" src="/images/ninfa.jpg" alt="Ninfa de cresta amarilla" width="1395" height="2093" /><div class="round-note">PEQUEÑAS AVES<br /><strong>grandes alegrías</strong><span aria-hidden="true">✦</span></div><span class="orbit-dot" aria-hidden="true"></span></div>
-        <svg class="wave wave-bottom" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 35C60 0 60 0 120 35S180 70 240 35S300 0 360 35S420 70 480 35S540 0 600 35S660 70 720 35S780 0 840 35S900 70 960 35S1020 0 1080 35S1140 70 1200 35S1260 0 1320 35S1380 70 1440 35V80H0Z"/></svg>
-      </section>
-      <div class="category-bar" aria-label="Categorías de Golden Bird"><a href="#aves">Aves de compañía <span aria-hidden="true">↗</span></a><a href="#alimentos">Alimentos <span aria-hidden="true">↗</span></a><a href="#productos">Jaulas y accesorios <span aria-hidden="true">↗</span></a></div>
-      <section class="pets section-pad" id="mascotas" aria-labelledby="pets-title">
-        <div class="section-heading reveal"><div><p class="eyebrow">CADA COMPAÑERO TIENE SU MUNDO</p><h2 id="pets-title">Pequeños, grandes.<br /><span class="serif">Todos especiales.</span></h2></div><p>Un vistazo al mundo de las mascotas y sus diferentes personalidades.</p></div>
-        <div class="pets-grid">{pets.map(pet => <article class="pet-card reveal"><div class={'pet-photo pet-photo--'+pet.photo}>{pet.photo === 'aves' ? <img src="/images/periquitos.jpg" alt="Periquitos de compañía" width="3112" height="2316" loading="lazy" /> : <span class="pet-crop"><img src="/images/pet-categories.png" alt={pet.name+' — imagen ilustrativa'} width="1983" height="793" loading="lazy" /></span>}</div><h3>{pet.name}</h3><p>{pet.detail}</p></article>)}</div>
-        <p class="sample-note">Mascotas de ejemplo para explorar nuestras categorías. No representan animales disponibles para la venta.</p>
-      </section>
-      <section class="intro section-pad reveal" id="nosotros"><svg class="squiggle" viewBox="0 0 150 55" aria-hidden="true" focusable="false"><path d="M5 28C20 0 35 0 50 28S80 55 95 28S125 0 145 28" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></svg><div class="intro-logo"><img src="/images/golden-bird-logo.png" alt="Golden Bird — Mascotas y más" width="1254" height="1254" loading="lazy" /></div><div class="intro-copy"><p class="eyebrow">EL MUNDO GOLDEN BIRD</p><h2>Una compañía pequeña.<br /><span class="serif">Un lugar enorme en tu vida.</span></h2><p>En Golden Bird compartimos el gusto por las aves y las mascotas. Reunimos aves, alimentos, jaulas y accesorios para acompañarte en los detalles de cada día.</p></div></section>
-      <section class="birds section-pad" id="aves" aria-labelledby="birds-title"><div class="decor-layer" aria-hidden="true"><span class="outline-circle"></span><svg class="squiggle" viewBox="0 0 150 55" aria-hidden="true" focusable="false"><path d="M5 28C20 0 35 0 50 28S80 55 95 28S125 0 145 28" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></svg></div><div class="section-heading reveal"><div><p class="eyebrow">UN MUNDO POR DESCUBRIR</p><h2 id="birds-title">Pequeñas aves.<br /><span class="serif">Grandes personalidades.</span></h2></div><p>Conoce algunas aves de compañía<br />y descubre qué las hace especiales.</p></div><div class="bird-grid">{birds.map(bird=><article class="bird-card reveal"><div class="bird-photo"><img src={'/images/'+bird.image} alt={bird.name + ' — fotografía de referencia'} width="700" height="800" loading="lazy" /><span class="bird-number">{bird.number}</span></div><div class="bird-title"><h3>{bird.name}</h3><span aria-hidden="true">✦</span></div><p class="scientific">{bird.scientific}</p><p class="bird-description">{bird.description}</p></article>)}</div><p class="availability">Selección ilustrativa. Las fotografías son de referencia y no representan disponibilidad actual.</p></section>
-      <section class="bird-food section-pad" id="alimentos" aria-labelledby="food-title">
-        <div class="food-heading reveal"><p class="eyebrow">PARA LOS REYES DE LAS PLUMAS</p><h2 id="food-title">Un mundo de sabor<br /><span class="serif">para tus aves.</span></h2><p>Semillas, pellets y complementos: conoce algunas presentaciones de ejemplo.</p></div>
-        <div class="food-layout">
-          <div class="featured-bird reveal"><div class="bird-backdrop" aria-hidden="true"></div><span class="bird-feature-ring" aria-hidden="true"></span><img src="/images/featured-cockatiel.png" alt="Ninfa de cresta amarilla sobre una rama — imagen ilustrativa" width="1024" height="1536" loading="lazy" /><span class="bird-feature-label">¡A comer, pequeño!</span></div>
-          <div class="food-grid">{foods.map(food => <article class={'catalog-card food-card food-card--'+food.photo+' reveal'}><div class={'product-photo product-photo--'+food.photo}><img src="/images/bird-products.png" alt={food.name+' — presentación ilustrativa'} width="1536" height="1024" loading="lazy" /></div><div class="catalog-copy"><p class="product-kind">{food.kind}</p><h3>{food.name}</h3><p>{food.description}</p></div></article>)}</div>
-        </div>
-        <p class="sample-note">Imágenes y productos de ejemplo. Las marcas, presentaciones y disponibilidad se confirman en tienda.</p>
-      </section>
-      <section class="products section-pad" id="productos" aria-labelledby="products-title">
-        <span id="cuidado" class="section-anchor" aria-hidden="true"></span>
-        <svg class="wave wave-top" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 35C60 0 60 0 120 35S180 70 240 35S300 0 360 35S420 70 480 35S540 0 600 35S660 70 720 35S780 0 840 35S900 70 960 35S1020 0 1080 35S1140 70 1200 35S1260 0 1320 35S1380 70 1440 35V80H0Z"/></svg>
-        <div class="decor-layer" aria-hidden="true"><span class="outline-circle circle-one"></span><svg class="squiggle" viewBox="0 0 150 55"><path d="M5 28C20 0 35 0 50 28S80 55 95 28S125 0 145 28" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></svg></div>
-        <div class="section-heading reveal"><div><p class="eyebrow">DETALLES QUE HACEN SU DÍA</p><h2 id="products-title">Productos y accesorios<br /><span class="serif">para su pequeño mundo.</span></h2></div><p>Espacios, recipientes y juguetes para acompañar su día a día.</p></div>
-        <div class="products-grid">{accessories.map(product => <article class="catalog-card accessory-card reveal"><div class={'product-photo product-photo--'+product.photo}><img src="/images/bird-products.png" alt={product.name+' — producto ilustrativo'} width="1536" height="1024" loading="lazy" /></div><div class="catalog-copy"><p class="product-kind">{product.kind}</p><h3>{product.name}</h3><p>{product.description}</p></div></article>)}</div>
-        <p class="sample-note">Catálogo ilustrativo. Consulta la disponibilidad, tamaños y materiales en tienda.</p>
-        <svg class="wave wave-bottom" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 35C60 0 60 0 120 35S180 70 240 35S300 0 360 35S420 70 480 35S540 0 600 35S660 70 720 35S780 0 840 35S900 70 960 35S1020 0 1080 35S1140 70 1200 35S1260 0 1320 35S1380 70 1440 35V80H0Z"/></svg>
-      </section>
-      <section class="closing section-pad reveal"><svg class="squiggle" viewBox="0 0 150 55" aria-hidden="true" focusable="false"><path d="M5 28C20 0 35 0 50 28S80 55 95 28S125 0 145 28" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></svg><p class="eyebrow">AVES, MASCOTAS Y MÁS</p><h2>La vida se disfruta<br /><span class="serif">en buena compañía.</span></h2></section>
-    </main>
-    <footer><a class="footer-brand" href="#inicio">Golden Bird<span>✦</span></a><p>Aves, mascotas y más.</p><p>© {new Date().getFullYear()} Golden Bird</p></footer>
-    <details class="photo-credits"><summary>Créditos fotográficos</summary><p>Imágenes de mascotas, ninfa destacada y productos generadas con IA con fines ilustrativos. Fotografías de referencia de Wikimedia Commons, mostradas con recorte de encuadre: <a href="https://commons.wikimedia.org/wiki/File:Budgerigar_1_(20123571788).jpg">Periquitos — Jim Bendon</a> (<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a>); <a href="https://commons.wikimedia.org/wiki/File:Cockatiel_3.jpg">Ninfa — Ganatron / paulweberphoto.com</a> (<a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>); <a href="https://commons.wikimedia.org/wiki/File:Agapornis_fischeri_-_pair_2.jpg">Agapornis — Peter Békési</a> (<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a>).</p></details>
-    <button class="back-top" type="button" aria-label="Volver al inicio" aria-hidden="true" tabindex="-1">
-      <svg class="back-top-ring" viewBox="0 0 60 60" aria-hidden="true" focusable="false">
-        <circle class="back-top-track" cx="30" cy="30" r="26" />
-        <circle class="back-top-progress" cx="30" cy="30" r="26" pathLength="100" />
-      </svg>
-      <svg class="back-top-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 19V5M5 12l7-7 7 7" /></svg>
-      <span class="back-top-label" aria-hidden="true">Volver al inicio</span>
-    </button>
-    <script>
-      const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
-      const nav = document.querySelector<HTMLElement>('#navigation');
-      const header = document.querySelector<HTMLElement>('.header');
-      const backTop = document.querySelector<HTMLButtonElement>('.back-top');
-      const progressRing = document.querySelector<SVGCircleElement>('.back-top-progress');
-      backTop?.addEventListener('click', () => {
-        document.querySelector<HTMLElement>('#hero-title')?.focus({ preventScroll: true });
-        window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
-      });
-      const links = [...(nav?.querySelectorAll<HTMLAnchorElement>('a') ?? [])];
-      const sections = links.map(link => document.querySelector<HTMLElement>(link.hash)).filter((section): section is HTMLElement => !!section);
-      function closeMenu(){toggle?.setAttribute('aria-expanded','false');toggle?.setAttribute('aria-label','Abrir menú');nav?.classList.remove('open');}
-      toggle?.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')!=='true';toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Cerrar menú':'Abrir menú');nav?.classList.toggle('open',open);});
-      links.forEach(link=>link.addEventListener('click',closeMenu));
-      document.addEventListener('keydown',event=>{if(event.key==='Escape' && toggle?.getAttribute('aria-expanded')==='true'){closeMenu();toggle.focus();}});
-      document.addEventListener('click',event=>{if(event.target instanceof Node && !header?.contains(event.target)) closeMenu();});
-      const mobile = window.matchMedia('(max-width: 1000px)');
-      mobile.addEventListener('change',closeMenu);
-      let queued = false;
-      function updateNavigation(){
-        queued = false;
-        const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-        const scroll = Math.max(0, window.scrollY);
-        const progress = maxScroll <= 0 ? 0 : (maxScroll - scroll <= 1 ? 1 : Math.min(1, scroll / maxScroll));
-        progressRing?.style.setProperty('stroke-dashoffset', String(100 * (1 - progress)));
-        const showBackTop = maxScroll > 0 && scroll > Math.min(180, maxScroll * 0.25);
-        backTop?.classList.toggle('is-visible', showBackTop);
-        backTop?.setAttribute('aria-hidden', String(!showBackTop));
-        if (backTop) backTop.tabIndex = showBackTop ? 0 : -1;
-        const height=header?.offsetHeight ?? 90;
-        document.documentElement.style.setProperty('--header-height',height+'px');
-        header?.classList.toggle('scrolled',window.scrollY>40);
-        let current=sections[0]?.id;
-        for(const section of sections){if(section.getBoundingClientRect().top<=height+100) current=section.id;}
-        links.forEach(link=>{if(link.hash==='#'+current)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');});
-      }
-      function scheduleNavigation(){if(!queued){queued=true;requestAnimationFrame(updateNavigation);}}
-      window.addEventListener('scroll',scheduleNavigation,{passive:true});
-      window.addEventListener('resize',scheduleNavigation);
-      if ('ResizeObserver' in window) {
-        const resizeObserver = new ResizeObserver(scheduleNavigation);
-        if (header) resizeObserver.observe(header);
-        resizeObserver.observe(document.body);
-      }
-      window.addEventListener('load', scheduleNavigation, { once: true });
-      window.addEventListener('pageshow', scheduleNavigation);
-      updateNavigation();
-      // Load motion independently so navigation and content remain available
-      // even if the optional animation chunk cannot be downloaded.
-      void import('../scripts/motion')
-        .then(({ initializeMotion }) => initializeMotion())
-        .catch(() => {});
-    </script>
-  </body>
-</html>
+
+<MainLayout title={page.title} description={page.description}>
+  <main id="contenido" class="bg-paper">
+    <HeroSection />
+    <CategoryNavigation />
+    <PetsSection />
+    <AboutSection />
+    <BirdsSection />
+    <FoodSection />
+    <ProductsSection />
+    <ClosingSection />
+  </main>
+</MainLayout>

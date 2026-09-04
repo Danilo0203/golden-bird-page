@@ -1,0 +1,220 @@
+---
+import { foods } from "../../../data/home";
+import FoodCard from "./FoodCard.astro";
+---
+
+<section
+  class="bird-food relative mx-auto max-w-[1360px] px-[6%] pt-[45px] pb-[66px] [scroll-margin-top:1rem] max-[700px]:px-[7%] max-[700px]:pt-[25px] max-[700px]:pb-12"
+  id="alimentos"
+  aria-labelledby="food-title"
+>
+  <div
+    class="food-layout grid grid-cols-[.75fr_1.65fr] items-center gap-8 lg:gap-12 max-[1000px]:grid-cols-1 max-[1000px]:gap-10"
+  >
+    <!-- Left column: Featured bird collage -->
+    <div
+      class="featured-bird reveal relative isolate flex min-w-0 self-stretch items-end max-[1000px]:mx-auto max-[1000px]:h-[365px] max-[1000px]:min-h-0 max-[1000px]:w-[80%] max-[1000px]:max-w-[320px]"
+    >
+      <div
+        class="bird-backdrop absolute top-[26%] left-[-2%] -z-10 h-[59%] w-[105%] -rotate-[13deg] rounded-[55%_45%_47%_53%/48%_52%_48%_52%] bg-[#f5dfb9]"
+        aria-hidden="true"
+      >
+      </div>
+      <span
+        class="bird-feature-ring absolute top-[18%] left-[5%] -z-10 h-[65%] w-[90%] rotate-[14deg] rounded-full border-2 border-dashed border-gold"
+        aria-hidden="true"></span>
+      <img
+        class="relative z-[1] size-full max-h-[660px] object-contain max-[1000px]:max-h-none"
+        src="/images/featured-cockatiel.png"
+        alt="Ninfa de cresta amarilla sobre una rama — imagen ilustrativa"
+        width="1024"
+        height="1536"
+        loading="lazy"
+      />
+      <span
+        class="bird-feature-label absolute bottom-[8%] left-[3%] z-[2] -rotate-[8deg] rounded-[40px] bg-charcoal px-5 py-3 font-display text-base font-extrabold text-paper max-[1000px]:bottom-[7%] max-[1000px]:px-4 max-[1000px]:py-2.5 max-[1000px]:text-sm"
+        >¡A comer, pequeño!</span
+      >
+    </div>
+
+    <!-- Right column: Carousel container -->
+    <div class="food-carousel-wrapper min-w-0 flex flex-col">
+      <!-- Header row with title and carousel arrows (styled matching reference mockup) -->
+      <div
+        class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-5"
+      >
+        <div>
+          <h2
+            id="food-title"
+            class="text-[clamp(1.9rem,3vw,2.9rem)] leading-[1.14] font-black tracking-[-.04em] text-ink"
+          >
+            Un mundo de sabor<br />
+            <span class="font-display font-black tracking-[-.035em] text-orange"
+              >para tus aves.</span
+            >
+          </h2>
+        </div>
+
+        <!-- Navigation Arrows (Orange rounded buttons from reference) -->
+        <div class="flex items-center gap-2 shrink-0 self-end sm:self-auto">
+          <button
+            id="food-prev-btn"
+            type="button"
+            class="flex size-11 items-center justify-center rounded-xl bg-orange text-white shadow-sm transition-[transform,background,opacity] duration-200 hover:scale-105 hover:bg-[#8f3f26] active:scale-95 disabled:pointer-events-none disabled:opacity-25 focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-orange cursor-pointer"
+            aria-label="Ver alimentos anteriores"
+            disabled
+          >
+            <svg
+              class="size-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="m15 18-6-6 6-6"></path>
+            </svg>
+          </button>
+          <button
+            id="food-next-btn"
+            type="button"
+            class="flex size-11 items-center justify-center rounded-xl bg-orange text-white shadow-sm transition-[transform,background,opacity] duration-200 hover:scale-105 hover:bg-[#8f3f26] active:scale-95 disabled:pointer-events-none disabled:opacity-25 focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-orange cursor-pointer"
+            aria-label="Ver siguientes alimentos"
+          >
+            <svg
+              class="size-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="m9 18 6-6-6-6"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Carousel Scroll Track -->
+      <div
+        id="food-carousel-track"
+        class="flex gap-4 sm:gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory py-3 px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden focus-visible:outline-2 focus-visible:outline-orange rounded-3xl"
+        tabindex="0"
+        role="region"
+        aria-label="Carrusel de alimentos para aves"
+      >
+        {foods.map((food, index) => <FoodCard item={food} index={index} />)}
+      </div>
+
+      <!-- Footer indicator row -->
+      <div
+        class="mt-4 flex flex-wrap items-center justify-between gap-3 text-xs text-muted"
+      >
+        <p class="text-[.8125rem]">Desliza para conocer más opciones.</p>
+        <div
+          id="food-carousel-dots"
+          class="flex items-center gap-1.5"
+          aria-hidden="true"
+        >
+          {
+            foods.map((_, i) => (
+              <span
+                class:list={[
+                  "size-2 rounded-full transition-all duration-300",
+                  i === 0 ? "w-6 bg-orange" : "bg-line hover:bg-gold",
+                ]}
+              />
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function setupFoodCarousel() {
+    const track = document.querySelector<HTMLElement>("#food-carousel-track");
+    const prevBtn = document.querySelector<HTMLButtonElement>("#food-prev-btn");
+    const nextBtn = document.querySelector<HTMLButtonElement>("#food-next-btn");
+    const dotsContainer = document.querySelector<HTMLElement>(
+      "#food-carousel-dots",
+    );
+
+    if (!track || !prevBtn || !nextBtn) return;
+
+    const dots = dotsContainer ? Array.from(dotsContainer.children) : [];
+
+    function updateControls() {
+      if (!track || !prevBtn || !nextBtn) return;
+      const scrollLeft = track.scrollLeft;
+      const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+
+      prevBtn.disabled = scrollLeft <= 10;
+      nextBtn.disabled = scrollLeft >= maxScroll - 10;
+
+      // Update dots indicator
+      if (dots.length > 0) {
+        const cards = track.querySelectorAll<HTMLElement>(".food-card");
+        let activeIndex = 0;
+        let minDistance = Infinity;
+        const trackCenter = scrollLeft + track.clientWidth / 2;
+
+        cards.forEach((card, index) => {
+          const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+          const distance = Math.abs(cardCenter - trackCenter);
+          if (distance < minDistance) {
+            minDistance = distance;
+            activeIndex = index;
+          }
+        });
+
+        dots.forEach((dot, index) => {
+          if (index === activeIndex) {
+            dot.className =
+              "size-2 w-6 rounded-full bg-orange transition-all duration-300";
+          } else {
+            dot.className =
+              "size-2 rounded-full bg-line transition-all duration-300";
+          }
+        });
+      }
+    }
+
+    function scrollByDirection(direction: "prev" | "next") {
+      if (!track) return;
+      const firstCard = track.querySelector<HTMLElement>(".food-card");
+      const step = firstCard ? firstCard.offsetWidth + 20 : 310;
+      track.scrollBy({
+        left: direction === "next" ? step : -step,
+        behavior: "smooth",
+      });
+    }
+
+    prevBtn.addEventListener("click", () => scrollByDirection("prev"));
+    nextBtn.addEventListener("click", () => scrollByDirection("next"));
+
+    let ticking = false;
+    track.addEventListener(
+      "scroll",
+      () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            updateControls();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      },
+      { passive: true },
+    );
+
+    window.addEventListener("resize", updateControls);
+    updateControls();
+  }
+
+  setupFoodCarousel();
+  document.addEventListener("astro:page-load", setupFoodCarousel);
+</script>

@@ -1,0 +1,61 @@
+---
+import type { CatalogItem } from "../../../data/home";
+
+interface Props {
+  item: CatalogItem;
+  variant: "food" | "accessory";
+  index?: number;
+}
+
+const { item, variant, index = 0 } = Astro.props;
+const photoPositions: Record<CatalogItem["photo"], string> = {
+  seeds: "top-0 left-0",
+  pellets: "top-0 left-[-100%]",
+  millet: "top-0 left-[-200%]",
+  cage: "top-[-100%] left-0",
+  feeder: "top-[-100%] left-[-100%]",
+  toy: "top-[-100%] left-[-200%]",
+};
+const foodVariants: Partial<Record<CatalogItem["photo"], string>> = {
+  seeds: "border-[#ebd4ad] bg-[#fcf2e0]",
+  pellets: "border-[#eacbbc] bg-[#f6e6dc]",
+  millet: "col-span-full grid grid-cols-[145px_1fr] items-center gap-[18px] rounded-[25px] bg-[#f0ede6] p-3 max-[700px]:col-auto",
+};
+const accessoryVariants = [
+  "",
+  "mt-[27px] rounded-[45px_25px_45px_25px] max-[700px]:mt-0 max-[700px]:justify-self-end",
+  "rounded-[25px_45px_25px_45px]",
+] as const;
+const articleClasses = variant === "food"
+  ? [
+      "food-card max-[700px]:grid max-[700px]:grid-cols-[minmax(0,.85fr)_minmax(0,1.15fr)] max-[700px]:items-center max-[700px]:gap-3 max-[700px]:rounded-[25px] max-[700px]:p-3 max-[380px]:grid-cols-1",
+      foodVariants[item.photo],
+    ]
+  : [
+      "accessory-card border-0 px-[15px] pt-[15px] pb-[29px] shadow-[0_7px_0_#b8905533] max-[700px]:w-[94%] max-[700px]:max-w-[400px] max-[700px]:justify-self-start",
+      accessoryVariants[index],
+    ];
+const alt = variant === "food"
+  ? `${item.name} — presentación ilustrativa`
+  : `${item.name} — producto ilustrativo`;
+---
+
+<article class:list={["catalog-card reveal min-w-0 overflow-hidden rounded-[30px] border border-line bg-white px-3 pt-3 pb-6", articleClasses]}>
+  <div class:list={[
+    "product-photo relative aspect-square overflow-hidden bg-white",
+    variant === "food" ? "rounded-[22px]" : "rounded-full max-[700px]:mx-auto max-[700px]:max-w-[285px]",
+    item.photo === "millet" && "rounded-[18px]",
+    variant === "food" && "max-[380px]:mx-auto max-[380px]:w-full max-[380px]:max-w-[230px]",
+  ]}>
+    <img class:list={["absolute h-[200%] w-[300%] max-w-none object-fill", photoPositions[item.photo]]} src="/images/bird-products.png" alt={alt} width="1536" height="1024" loading="lazy" />
+  </div>
+  <div class:list={[
+    "catalog-copy px-2.5 pt-4",
+    item.photo === "millet" && variant === "food" && "pr-3.5 pl-0",
+    variant === "food" && "max-[700px]:px-0 max-[700px]:py-1.5 max-[380px]:px-[7px] max-[380px]:pt-[5px] max-[380px]:pb-2.5",
+  ]}>
+    <p class="product-kind mb-2 text-xs leading-[1.6] font-bold tracking-[.08em] text-[#8a552c] max-[700px]:tracking-[.04em]">{item.kind}</p>
+    <h3 class="text-[1.45rem] leading-[1.2] font-black max-[1100px]:text-[1.3rem]">{item.name}</h3>
+    <p class="mt-[11px] text-base leading-[1.7] text-muted max-[700px]:mt-[9px]">{item.description}</p>
+  </div>
+</article>

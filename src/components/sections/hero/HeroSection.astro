@@ -1,0 +1,126 @@
+---
+import DecorativeSquiggle from "../../common/DecorativeSquiggle.astro";
+import WaveDivider from "../../common/WaveDivider.astro";
+---
+
+<section
+  class="hero relative isolate mx-auto mt-[-48px] grid w-full grid-cols-[1fr_1.05fr] items-center gap-[4%] bg-gold-light px-[max(6%,calc((100vw-1280px)/2))] pt-[110px] pb-[105px] [scroll-margin-top:1rem] max-[1100px]:gap-[3%] max-[1100px]:px-[6%] max-[1000px]:pt-[100px] max-[700px]:mt-[-38px] max-[700px]:grid-cols-1 max-[700px]:gap-[33px] max-[700px]:px-[7%] max-[700px]:pt-[90px] max-[700px]:pb-[86px] max-[380px]:px-[6%]"
+  id="inicio"
+  aria-labelledby="hero-title"
+>
+  <div
+    class="decor-layer pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+    aria-hidden="true"
+  >
+    <span
+      class="outline-circle absolute top-[95px] left-[-118px] size-[170px] rounded-full border-[5px] border-[#ffffff80] max-[700px]:top-[210px] max-[700px]:left-[-147px]"
+    ></span>
+    <span
+      class="outline-circle absolute right-[-100px] bottom-[60px] size-[215px] rounded-full border-[20px] border-[#ffffff33] max-[700px]:right-[-140px] max-[700px]:bottom-[15%]"
+    ></span>
+    <span
+      class="small-dot absolute top-[90px] left-[43%] size-[15px] rounded-full bg-[#c38249] max-[700px]:top-[140px] max-[700px]:right-[13%] max-[700px]:left-auto max-[700px]:size-[9px]"
+    ></span>
+    <DecorativeSquiggle
+      class="bottom-[67px] left-[40%] -rotate-[19deg] text-[#ad6e3c] max-[700px]:bottom-[54px] max-[700px]:left-[10%] max-[700px]:w-[70px]"
+    />
+  </div>
+
+  <div class="hero-copy relative z-[2] pb-2.5 max-[700px]:pb-0">
+    <p
+      class="eyebrow flex items-center gap-2.5 text-xs leading-[1.8] font-bold tracking-[.14em] text-[#75502b] max-[700px]:tracking-[.1em]"
+    >
+      <span class="size-2 rounded-full bg-orange"></span>BIENVENIDO A GOLDEN
+      BIRD
+    </p>
+    <h1
+      id="hero-title"
+      class="my-6 text-[clamp(3.8rem,6.2vw,6.2rem)] font-black leading-[1.05] tracking-[-.055em] max-[1100px]:text-[clamp(3.7rem,6.5vw,5.5rem)] max-[1000px]:text-[clamp(3.6rem,7vw,5rem)] max-[700px]:my-[20px_25px] max-[700px]:text-[clamp(3.4rem,12vw,5.2rem)] max-[380px]:text-[3.4rem]"
+      tabindex="-1"
+    >
+      La alegría<br />tiene
+      <span
+        class="relative inline-block px-[.04em] pb-[.06em] ml-2.5 font-display font-black tracking-[-.035em] text-orange after:absolute after:right-0 after:bottom-[-3px] after:left-0 after:h-3 after:-rotate-[5deg] after:rounded-[50%] after:border-b-4 after:border-orange"
+      >
+        alas.</span
+      >
+    </h1>
+    <p
+      class="hero-description max-w-[370px] text-lg leading-[1.8] text-[#5c4935] max-[700px]:max-w-[350px] max-[700px]:text-base max-[1000px]:text-base"
+    >
+      Aves, mascotas y todo lo que necesitas para llenar su mundo de bienestar.
+    </p>
+    <a
+      class="button mt-7 inline-flex items-center gap-[27px] rounded-[40px] bg-charcoal px-[25px] py-[17px] text-[.9375rem] font-semibold text-white transition-[transform,background] duration-200 hover:-translate-y-[3px] hover:bg-orange focus-visible:outline-[3px] focus-visible:outline-offset-[5px] focus-visible:outline-orange max-[700px]:mt-[23px] max-[700px]:gap-[22px] max-[700px]:px-[22px] max-[700px]:py-4 max-[700px]:text-sm"
+      href="#aves"
+    >
+      Encuentra tu inspiración <span class="text-[1.3rem]" aria-hidden="true"
+        >↗</span
+      >
+    </a>
+    <div class="hero-note mt-[29px] flex items-center gap-3 max-[700px]:hidden">
+      <span class="tiny-star text-[2.3rem] text-orange" aria-hidden="true"
+        >✳</span
+      >
+      <p class="text-sm leading-[1.6] text-[#65513c]">
+        Pequeñas compañías.<br /><strong class="font-semibold text-ink"
+          >Grandes momentos.</strong
+        >
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="hero-visual relative z-[2] aspect-square w-full max-w-[555px] justify-self-center before:absolute before:inset-y-0 before:right-[1%] before:left-[1%] before:rotate-12 before:rounded-full before:border-2 before:border-[#ffffff88] max-[700px]:mb-2.5 max-[700px]:w-[94%] max-[700px]:max-w-[430px]"
+  >
+    <img
+      class="hero-image absolute top-[5%] left-[9%] h-[83%] w-[83%] rounded-[48%_52%_44%_56%/54%_43%_57%_46%] border-[9px] border-paper object-cover object-[50%_center] shadow-[0_14px_35px_#63432626] max-[700px]:border-[6px]"
+      src="/images/periquitos.jpg"
+      alt="Dos periquitos verdes y amarillos posados juntos"
+      width="3112"
+      height="2316"
+      fetchpriority="high"
+    />
+    <figure
+      class="companion-photo absolute bottom-[-1%] left-[-3%] aspect-square w-[39%] -rotate-[10deg] rounded-full bg-paper p-[7px] shadow-[0_12px_30px_#63432626] max-[700px]:left-[-3%] max-[700px]:p-[5px]"
+    >
+      <img
+        class="size-full rounded-full object-cover"
+        src="/images/agapornis.jpg"
+        alt="Dos agapornis juntos"
+        width="2225"
+        height="1482"
+      />
+      <figcaption
+        class="absolute bottom-[-13px] left-[-8%] w-[116%] rounded-[30px] bg-charcoal px-[7px] py-2 text-center font-display text-sm font-extrabold text-white max-[700px]:left-[-10%] max-[700px]:w-[120%] max-[700px]:px-[5px] max-[700px]:py-[7px] max-[700px]:text-xs max-[380px]:whitespace-normal"
+      >
+        ¡En buena compañía!
+      </figcaption>
+    </figure>
+    <img
+      class="ninfa-bubble absolute top-0 right-[-3%] size-[28%] rounded-full border-[7px] border-paper object-cover object-[center_35%] shadow-[0_10px_25px_#63432622] max-[700px]:right-[-2%] max-[700px]:border-[5px]"
+      src="/images/ninfa.jpg"
+      alt="Ninfa de cresta amarilla"
+      width="1395"
+      height="2093"
+    />
+    <div
+      class="round-note absolute right-[-1%] bottom-[1%] flex min-h-[125px] w-[145px] rotate-[8deg] flex-col items-center justify-center rounded-[55%_45%_48%_52%/43%_54%_46%_57%] bg-[#fff8e7] px-3 py-6 text-center text-xs leading-[1.65] text-[#685037] max-[1100px]:bottom-[-7%] max-[1100px]:min-h-[106px] max-[1100px]:w-[120px] max-[1100px]:px-[9px] max-[1100px]:py-[15px] max-[700px]:right-[-5%] max-[700px]:bottom-[-2%] max-[700px]:min-h-[95px] max-[700px]:w-[110px] max-[700px]:px-1.5 max-[700px]:py-3 max-[380px]:min-h-[84px] max-[380px]:w-[96px]"
+    >
+      PEQUEÑAS AVES<br />
+      <strong
+        class="font-display text-base font-black text-orange max-[1100px]:text-[.9375rem] max-[700px]:text-sm max-[380px]:text-[.8125rem]"
+        >grandes alegrías</strong
+      >
+      <span
+        class="text-2xl text-gold max-[700px]:text-[1.2rem]"
+        aria-hidden="true">✦</span
+      >
+    </div>
+    <span
+      class="orbit-dot absolute top-[22%] left-0 size-[23px] rounded-full border-[5px] border-[#ffffff80] bg-orange"
+      aria-hidden="true"></span>
+  </div>
+
+  <WaveDivider position="bottom" />
+</section>

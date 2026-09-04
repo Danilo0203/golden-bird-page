@@ -1,0 +1,22 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<svg
+  class:list={["squiggle pointer-events-none absolute h-[46px] w-[115px] text-orange", className]}
+  viewBox="0 0 150 55"
+  aria-hidden="true"
+  focusable="false"
+>
+  <path
+    d="M5 28C20 0 35 0 50 28S80 55 95 28S125 0 145 28"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="6"
+    stroke-linecap="round"
+  />
+</svg>

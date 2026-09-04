@@ -1,0 +1,74 @@
+---
+import type { RecentProduct } from "../../../data/home";
+
+interface Props {
+  item: RecentProduct;
+}
+
+const { item } = Astro.props;
+
+const photoPositions: Record<RecentProduct["photo"], string> = {
+  seeds: "top-0 left-0",
+  pellets: "top-0 left-[-100%]",
+  millet: "top-0 left-[-200%]",
+  cage: "top-[-100%] left-0",
+  feeder: "top-[-100%] left-[-100%]",
+  toy: "top-[-100%] left-[-200%]",
+};
+---
+
+<article
+  class:list={[
+    "recent-card group flex items-center gap-3.5 sm:gap-4 rounded-2xl sm:rounded-[22px] border p-3 sm:p-4 transition-[transform,box-shadow] duration-200 hover:-translate-y-1 hover:shadow-[0_10px_25px_#593e2112]",
+    item.accentBg,
+    item.accentBorder,
+  ]}
+>
+  <!-- Product Image (Left side) -->
+  <div class="product-photo relative size-24 sm:size-28 shrink-0 overflow-hidden rounded-xl sm:rounded-2xl bg-white p-2 shadow-xs transition-transform duration-200 group-hover:scale-[1.02]">
+    <img
+      class:list={[
+        "absolute h-[200%] w-[300%] max-w-none object-fill transition-transform duration-200 group-hover:scale-105",
+        photoPositions[item.photo],
+      ]}
+      src="/images/bird-products.png"
+      alt={`${item.name} — producto reciente`}
+      width="1536"
+      height="1024"
+      loading="lazy"
+    />
+  </div>
+
+  <!-- Product Details (Right side) -->
+  <div class="flex flex-1 flex-col justify-center min-w-0">
+    <div class="flex items-center justify-between gap-1 mb-1">
+      <span class="text-[0.68rem] font-bold tracking-wider text-[#8a552c] uppercase">
+        {item.category}
+      </span>
+      {item.tag && (
+        <span class="rounded-full bg-orange/15 px-2 py-0.5 text-[0.65rem] font-black text-orange">
+          {item.tag}
+        </span>
+      )}
+    </div>
+
+    <h3 class="font-display text-[1rem] sm:text-[1.08rem] font-black text-ink leading-snug line-clamp-2">
+      {item.name}
+    </h3>
+
+    <p class="mt-1 text-xs text-muted leading-relaxed line-clamp-1">
+      {item.description}
+    </p>
+
+    <div class="mt-2.5 flex items-baseline gap-2">
+      <span class="font-display text-[1.18rem] font-black text-orange">
+        {item.price}
+      </span>
+      {item.originalPrice && (
+        <span class="text-xs font-medium text-muted/75 line-through">
+          {item.originalPrice}
+        </span>
+      )}
+    </div>
+  </div>
+</article>
