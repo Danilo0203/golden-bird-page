@@ -1,16 +1,22 @@
 ---
+import type { SiteHeadline } from '../../lib/site-schema';
+
 interface Props {
   eyebrow: string;
   titleId: string;
+  title: SiteHeadline;
+  description: string;
 }
 
-const { eyebrow, titleId } = Astro.props;
+const { eyebrow, titleId, title, description } = Astro.props;
 ---
 
 <div class="section-heading reveal mb-10 flex flex-col items-center gap-[17px] text-center max-[700px]:mb-[29px]">
   <div>
     <p class="eyebrow mb-[13px] text-xs font-bold leading-[1.8] tracking-[.14em] text-[#8a552c]">{eyebrow}</p>
-    <h2 id={titleId} class="text-[clamp(2.1rem,3.2vw,3.15rem)] font-black leading-[1.17] tracking-[-.04em] max-[700px]:text-[2.1rem]"><slot name="title" /></h2>
+    <h2 id={titleId} class="text-[clamp(2.1rem,3.2vw,3.15rem)] font-black leading-[1.17] tracking-[-.04em] max-[700px]:text-[2.1rem]">
+      {title.lead}{title.highlight && <><br /><span class="font-display font-black tracking-[-.035em] text-orange">{title.highlight}</span></>}
+    </h2>
   </div>
-  <p class="max-w-[520px] text-base leading-[1.7] text-muted [&_br]:hidden"><slot name="description" /></p>
+  <p class="max-w-[520px] text-base leading-[1.7] text-muted [&_br]:hidden">{description}</p>
 </div>

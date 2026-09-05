@@ -1,7 +1,14 @@
 ---
 import SectionHeading from "../../common/SectionHeading.astro";
-import { pets } from "../../../data/home";
+import { image, type SiteContent } from "../../../lib/site-content";
 import PetCard from "./PetCard.astro";
+
+interface Props {
+  content: SiteContent;
+}
+
+const { content } = Astro.props;
+const { pets } = content.document;
 ---
 
 <section
@@ -9,20 +16,15 @@ import PetCard from "./PetCard.astro";
   id="mascotas"
   aria-labelledby="pets-title"
 >
-  <SectionHeading eyebrow="CADA COMPAÑERO TIENE SU MUNDO" titleId="pets-title">
-    <Fragment slot="title"
-      >Pequeños, grandes.<br /><span
-        class="font-display font-black tracking-[-.035em] text-orange"
-        >Todos especiales.</span
-      ></Fragment
-    >
-    <Fragment slot="description"
-      >Un vistazo al mundo de las mascotas y sus diferentes personalidades.</Fragment
-    >
-  </SectionHeading>
+  <SectionHeading
+    eyebrow={pets.eyebrow}
+    titleId="pets-title"
+    title={pets.title}
+    description={pets.description}
+  />
   <div
     class="pets-grid grid grid-cols-5 items-start gap-[25px] max-[1100px]:gap-4 max-[700px]:grid-cols-2 max-[700px]:gap-x-[19px] max-[700px]:gap-y-[27px]"
   >
-    {pets.map((pet, index) => <PetCard pet={pet} index={index} />)}
+    {pets.items.map((pet, index) => <PetCard pet={pet} photo={image(content, pet.imageId)} index={index} />)}
   </div>
 </section>

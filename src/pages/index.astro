@@ -8,22 +8,28 @@ import HeroSection from '../components/sections/hero/HeroSection.astro';
 import PetsSection from '../components/sections/pets/PetsSection.astro';
 import ProductsSection from '../components/sections/products/ProductsSection.astro';
 import MainLayout from '../layouts/MainLayout.astro';
+import { getSiteContent } from '../lib/site-content';
 
-const page = {
-  title: 'Golden Bird — Aves, mascotas y más',
-  description: 'Conoce el mundo de Golden Bird: aves de compañía, alimentos, jaulas y accesorios para tus mascotas.',
-};
+/**
+ * El contenido se trae una sola vez por visita y se pasa hacia abajo.
+ *
+ * Podría pedirlo cada sección por su cuenta, pero entonces una expiración de
+ * caché a mitad del render dejaría media página con la versión vieja y media
+ * con la nueva. Una sola lectura garantiza que lo que se ve es un estado
+ * consistente del sitio.
+ */
+const content = await getSiteContent();
 ---
 
-<MainLayout title={page.title} description={page.description}>
+<MainLayout content={content}>
   <main id="contenido" class="bg-paper">
-    <HeroSection />
-    <CategoryNavigation />
-    <PetsSection />
-    <AboutSection />
-    <BirdsSection />
-    <FoodSection />
-    <ProductsSection />
-    <ClosingSection />
+    <HeroSection content={content} />
+    <CategoryNavigation content={content} />
+    <PetsSection content={content} />
+    <AboutSection content={content} />
+    <BirdsSection content={content} />
+    <FoodSection content={content} />
+    <ProductsSection content={content} />
+    <ClosingSection content={content} />
   </main>
 </MainLayout>

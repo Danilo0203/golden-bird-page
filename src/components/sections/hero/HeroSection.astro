@@ -1,6 +1,19 @@
 ---
 import DecorativeSquiggle from "../../common/DecorativeSquiggle.astro";
 import WaveDivider from "../../common/WaveDivider.astro";
+import { image, type SiteContent } from "../../../lib/site-content";
+
+interface Props {
+  content: SiteContent;
+}
+
+const { content } = Astro.props;
+const { hero } = content.document;
+/**
+ * El collage tiene CSS propio por ranura —blob, rotación, offset—, así que las
+ * fotos se toman por posición y no por nombre. Son siempre tres.
+ */
+const [main, companion, bubble] = hero.photos.map((photo) => image(content, photo.imageId));
 ---
 
 <section
@@ -30,31 +43,25 @@ import WaveDivider from "../../common/WaveDivider.astro";
     <p
       class="eyebrow flex items-center gap-2.5 text-xs leading-[1.8] font-bold tracking-[.14em] text-[#75502b] max-[700px]:tracking-[.1em]"
     >
-      <span class="size-2 rounded-full bg-orange"></span>BIENVENIDO A GOLDEN
-      BIRD
+      <span class="size-2 rounded-full bg-orange"></span>{hero.eyebrow}
     </p>
     <h1
       id="hero-title"
       class="my-6 text-[clamp(3.8rem,6.2vw,6.2rem)] font-black leading-[1.05] tracking-[-.055em] max-[1100px]:text-[clamp(3.7rem,6.5vw,5.5rem)] max-[1000px]:text-[clamp(3.6rem,7vw,5rem)] max-[700px]:my-[20px_25px] max-[700px]:text-[clamp(3.4rem,12vw,5.2rem)] max-[380px]:text-[3.4rem]"
       tabindex="-1"
     >
-      La alegría<br />tiene
-      <span
-        class="relative inline-block px-[.04em] pb-[.06em] ml-2.5 font-display font-black tracking-[-.035em] text-orange after:absolute after:right-0 after:bottom-[-3px] after:left-0 after:h-3 after:-rotate-[5deg] after:rounded-[50%] after:border-b-4 after:border-orange"
-      >
-        alas.</span
-      >
+      {hero.title.lead}{hero.title.highlight && <><br /><span class="relative inline-block px-[.04em] pb-[.06em] ml-2.5 font-display font-black tracking-[-.035em] text-orange after:absolute after:right-0 after:bottom-[-3px] after:left-0 after:h-3 after:-rotate-[5deg] after:rounded-[50%] after:border-b-4 after:border-orange">{hero.title.highlight}</span></>}
     </h1>
     <p
       class="hero-description max-w-[370px] text-lg leading-[1.8] text-[#5c4935] max-[700px]:max-w-[350px] max-[700px]:text-base max-[1000px]:text-base"
     >
-      Aves, mascotas y todo lo que necesitas para llenar su mundo de bienestar.
+      {hero.subtitle}
     </p>
     <a
       class="button mt-7 inline-flex items-center gap-[27px] rounded-[40px] bg-charcoal px-[25px] py-[17px] text-[.9375rem] font-semibold text-white transition-[transform,background] duration-200 hover:-translate-y-[3px] hover:bg-orange focus-visible:outline-[3px] focus-visible:outline-offset-[5px] focus-visible:outline-orange max-[700px]:mt-[23px] max-[700px]:gap-[22px] max-[700px]:px-[22px] max-[700px]:py-4 max-[700px]:text-sm"
-      href="#aves"
+      href={hero.ctaAnchor}
     >
-      Encuentra tu inspiración <span class="text-[1.3rem]" aria-hidden="true"
+      {hero.ctaLabel} <span class="text-[1.3rem]" aria-hidden="true"
         >↗</span
       >
     </a>
@@ -63,9 +70,7 @@ import WaveDivider from "../../common/WaveDivider.astro";
         >✳</span
       >
       <p class="text-sm leading-[1.6] text-[#65513c]">
-        Pequeñas compañías.<br /><strong class="font-semibold text-ink"
-          >Grandes momentos.</strong
-        >
+        {hero.note?.lead}{hero.note?.highlight && <><br /><strong class="font-semibold text-ink">{hero.note.highlight}</strong></>}
       </p>
     </div>
   </div>
@@ -75,10 +80,10 @@ import WaveDivider from "../../common/WaveDivider.astro";
   >
     <img
       class="hero-image absolute top-[5%] left-[9%] h-[83%] w-[83%] rounded-[48%_52%_44%_56%/54%_43%_57%_46%] border-[9px] border-paper object-cover object-[50%_center] shadow-[0_14px_35px_#63432626] max-[700px]:border-[6px]"
-      src="/images/periquitos.jpg"
-      alt="Dos periquitos verdes y amarillos posados juntos"
-      width="3112"
-      height="2316"
+      src={main.src}
+      alt={main.alt}
+      width={main.width}
+      height={main.height}
       fetchpriority="high"
     />
     <figure
@@ -86,32 +91,29 @@ import WaveDivider from "../../common/WaveDivider.astro";
     >
       <img
         class="size-full rounded-full object-cover"
-        src="/images/agapornis.jpg"
-        alt="Dos agapornis juntos"
-        width="2225"
-        height="1482"
+        src={companion.src}
+        alt={companion.alt}
+        width={companion.width}
+        height={companion.height}
       />
       <figcaption
         class="absolute bottom-[-13px] left-[-8%] w-[116%] rounded-[30px] bg-charcoal px-[7px] py-2 text-center font-display text-sm font-extrabold text-white max-[700px]:left-[-10%] max-[700px]:w-[120%] max-[700px]:px-[5px] max-[700px]:py-[7px] max-[700px]:text-xs max-[380px]:whitespace-normal"
       >
-        ¡En buena compañía!
+        {hero.caption}
       </figcaption>
     </figure>
     <img
       class="ninfa-bubble absolute top-0 right-[-3%] size-[28%] rounded-full border-[7px] border-paper object-cover object-[center_35%] shadow-[0_10px_25px_#63432622] max-[700px]:right-[-2%] max-[700px]:border-[5px]"
-      src="/images/ninfa.jpg"
-      alt="Ninfa de cresta amarilla"
-      width="1395"
-      height="2093"
+      src={bubble.src}
+      alt={bubble.alt}
+      width={bubble.width}
+      height={bubble.height}
     />
     <div
       class="round-note absolute right-[-1%] bottom-[1%] flex min-h-[125px] w-[145px] rotate-[8deg] flex-col items-center justify-center rounded-[55%_45%_48%_52%/43%_54%_46%_57%] bg-[#fff8e7] px-3 py-6 text-center text-xs leading-[1.65] text-[#685037] max-[1100px]:bottom-[-7%] max-[1100px]:min-h-[106px] max-[1100px]:w-[120px] max-[1100px]:px-[9px] max-[1100px]:py-[15px] max-[700px]:right-[-5%] max-[700px]:bottom-[-2%] max-[700px]:min-h-[95px] max-[700px]:w-[110px] max-[700px]:px-1.5 max-[700px]:py-3 max-[380px]:min-h-[84px] max-[380px]:w-[96px]"
     >
-      PEQUEÑAS AVES<br />
-      <strong
-        class="font-display text-base font-black text-orange max-[1100px]:text-[.9375rem] max-[700px]:text-sm max-[380px]:text-[.8125rem]"
-        >grandes alegrías</strong
-      >
+      {hero.badge?.lead}<br />
+      {hero.badge?.highlight && <strong class="font-display text-base font-black text-orange max-[1100px]:text-[.9375rem] max-[700px]:text-sm max-[380px]:text-[.8125rem]">{hero.badge.highlight}</strong>}
       <span
         class="text-2xl text-gold max-[700px]:text-[1.2rem]"
         aria-hidden="true">✦</span

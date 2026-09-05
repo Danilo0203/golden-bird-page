@@ -1,12 +1,14 @@
 ---
-import type { Pet } from '../../../data/home';
+import type { ResolvedImage } from '../../../lib/site-content';
+import type { SitePet } from '../../../lib/site-schema';
 
 interface Props {
-  pet: Pet;
+  pet: SitePet;
+  photo: ResolvedImage;
   index: number;
 }
 
-const { pet, index } = Astro.props;
+const { pet, photo, index } = Astro.props;
 const photoVariants = [
   'border-[#f3dfbd] rounded-[45%_55%_52%_48%/54%_44%_56%_46%]',
   'border-[#edcabc] rounded-[48%_52%_54%_46%/53%_47%_51%_49%]',
@@ -14,13 +16,6 @@ const photoVariants = [
   'border-[#efd8a9] rounded-[47%_53%_52%_48%/52%_48%_53%_47%]',
   'border-[#edcabc] rounded-[45%_55%_52%_48%/54%_44%_56%_46%]',
 ] as const;
-const spritePositions: Record<Pet['photo'], string> = {
-  aves: '',
-  perros: 'left-0',
-  gatos: 'left-[-100%]',
-  conejos: 'left-[-200%]',
-  hamsteres: 'left-[-300%]',
-};
 ---
 
 <article class="pet-card group reveal min-w-0 text-center cursor-pointer max-[700px]:last:col-span-full max-[700px]:last:w-[48%] max-[700px]:last:justify-self-center">
@@ -30,13 +25,14 @@ const spritePositions: Record<Pet['photo'], string> = {
       photoVariants[index],
     ]}
   >
-    {pet.photo === 'aves' ? (
-      <img class="absolute top-0 size-full object-cover" src="/images/periquitos.jpg" alt="Periquitos de compañía" width="3112" height="2316" loading="lazy" />
-    ) : (
-      <span class="pet-crop absolute top-0 left-[18.74%] h-full w-[62.52%] overflow-hidden">
-        <img class:list={["absolute top-0 h-full w-[400%] max-w-none", spritePositions[pet.photo]]} src="/images/pet-categories.png" alt={`${pet.name} — imagen ilustrativa`} width="1983" height="793" loading="lazy" />
-      </span>
-    )}
+    <img
+      class="absolute top-0 size-full object-cover"
+      src={photo.src}
+      alt={photo.alt}
+      width={photo.width}
+      height={photo.height}
+      loading="lazy"
+    />
   </div>
   <h3 class="mt-[18px] text-[1.4rem] font-black transition-colors duration-300 group-hover:text-orange max-[1100px]:text-[1.25rem] max-[700px]:mt-[13px] max-[700px]:text-[1.35rem]">{pet.name}</h3>
   <p class="mt-1.5 text-sm leading-[1.6] text-muted">{pet.detail}</p>

@@ -3,13 +3,16 @@ import BackToTopButton from "../components/layout/BackToTopButton.astro";
 import SiteFooter from "../components/layout/SiteFooter.astro";
 import SiteHeader from "../components/layout/SiteHeader.astro";
 import "../styles/global.css";
+import { image, type SiteContent } from "../lib/site-content";
 
 interface Props {
-  title: string;
-  description: string;
+  content: SiteContent;
 }
 
-const { title, description } = Astro.props;
+const { content } = Astro.props;
+const { title, description } = content.document.seo;
+// El favicon es el mismo logo que administra el dashboard.
+const logo = image(content, content.document.about.logoImageId);
 ---
 
 <!doctype html>
@@ -24,7 +27,7 @@ const { title, description } = Astro.props;
     <meta name="description" content={description} />
     <meta name="theme-color" content="#edc080" />
     <title>{title}</title>
-    <link rel="icon" href="/images/golden-bird-logo.png" type="image/png" />
+    <link rel="icon" href={logo.src} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -34,9 +37,9 @@ const { title, description } = Astro.props;
   </head>
   <body class="m-0 bg-gold-light pt-4 font-sans text-ink selection:bg-charcoal selection:text-white">
     <a class="fixed -top-[100px] left-4 z-[200] bg-white p-3.5 focus:top-2.5 focus-visible:outline-[3px] focus-visible:outline-offset-[5px] focus-visible:outline-orange" href="#contenido">Saltar al contenido</a>
-    <SiteHeader />
+    <SiteHeader content={content} />
     <slot />
-    <SiteFooter />
+    <SiteFooter content={content} />
     <BackToTopButton />
 
     <script>

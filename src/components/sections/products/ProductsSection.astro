@@ -1,8 +1,15 @@
 ---
 import DecorativeSquiggle from "../../common/DecorativeSquiggle.astro";
 import WaveDivider from "../../common/WaveDivider.astro";
-import { catalogFilters, catalogProducts } from "../../../data/home";
+import { image, type SiteContent } from "../../../lib/site-content";
 import CatalogProductCard from "./CatalogProductCard.astro";
+
+interface Props {
+  content: SiteContent;
+}
+
+const { content } = Astro.props;
+const { products } = content.document;
 ---
 
 <section
@@ -44,7 +51,7 @@ import CatalogProductCard from "./CatalogProductCard.astro";
         id="products-title"
         class="text-[clamp(2.1rem,3.4vw,3.2rem)] leading-[1.12] font-black tracking-[-.04em] text-ink"
       >
-        Productos recién agregados
+        {products.title.lead}{products.title.highlight && <><br /><span class="font-display font-black tracking-[-.035em] text-orange">{products.title.highlight}</span></>}
       </h2>
     </div>
 
@@ -55,7 +62,7 @@ import CatalogProductCard from "./CatalogProductCard.astro";
       aria-label="Filtrar productos por categoría"
     >
       {
-        catalogFilters.map((filter, index) => (
+        products.filters.map((filter, index) => (
           <button
             type="button"
             class:list={[
@@ -79,7 +86,7 @@ import CatalogProductCard from "./CatalogProductCard.astro";
     id="catalog-grid"
     class="reveal grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-start gap-4 sm:gap-5 lg:gap-6"
   >
-    {catalogProducts.map((product) => <CatalogProductCard item={product} />)}
+    {products.items.map((product) => <CatalogProductCard item={product} photo={image(content, product.imageId)} />)}
   </div>
 
   <!-- Empty state fallback (hidden by default) -->

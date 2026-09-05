@@ -9,12 +9,15 @@
     "dev": "astro dev",
     "typecheck": "astro check",
     "build": "astro check && astro build",
+    "start": "node ./dist/server/entry.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/node": "^11.1.5",
     "astro": "^7.3.1",
-    "gsap": "^3.13.0"
+    "gsap": "^3.13.0",
+    "zod": "^4.5.4"
   },
   "allowScripts": {
     "esbuild": true
@@ -22,6 +25,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^26.4.1",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3"
   }
