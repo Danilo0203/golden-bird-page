@@ -1,0 +1,86 @@
+---
+import { newProducts } from "../../../data/home";
+import NewProductCard from "./NewProductCard.astro";
+---
+
+<section
+  class="new-products mx-auto max-w-[1360px] px-[6%] pt-[55px] pb-[60px] [scroll-margin-top:1rem] max-[700px]:px-[7%] max-[700px]:pt-8 max-[700px]:pb-[38px]"
+  id="productos-nuevos"
+  aria-labelledby="new-products-title"
+>
+  <!-- Header with Title and "Show More" button (matching screenshot) -->
+  <div class="reveal mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+    <div class="relative">
+      <!-- Decorative playful rays above title -->
+      <span class="mb-1 inline-block text-lg font-black text-orange select-none" aria-hidden="true">
+        彡
+      </span>
+      <h2
+        id="new-products-title"
+        class="text-[clamp(1.95rem,3.2vw,3rem)] leading-[1.12] font-black tracking-[-.04em] text-ink"
+      >
+        Productos nuevos
+      </h2>
+    </div>
+
+    <!-- "Ver más" button in orange rounded pill -->
+    <a
+      href="#productos"
+      class="inline-flex items-center gap-2 self-start sm:self-auto rounded-full bg-orange px-5 py-2.5 font-display text-sm font-bold text-white shadow-xs transition-all duration-200 hover:scale-105 hover:bg-[#8f3f26] active:scale-95 focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-orange"
+    >
+      Ver más <span aria-hidden="true">↗</span>
+    </a>
+  </div>
+
+  <!-- Main Content: 2x2 Grid on the left + Promo Banner on the right -->
+  <div class="reveal grid grid-cols-1 lg:grid-cols-[1.65fr_1fr] gap-6 items-stretch">
+    <!-- Left: 2x2 Horizontal Cards Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+      {newProducts.map((product) => (
+        <NewProductCard item={product} />
+      ))}
+    </div>
+
+    <!-- Right: Wholesome Promo Banner Card (styled matching reference mockup) -->
+    <div class="promo-card flex flex-col justify-between rounded-3xl bg-gradient-to-br from-[#7ba936] to-[#5a8427] p-6 sm:p-8 text-white shadow-md relative overflow-hidden min-h-[380px]">
+      <!-- Background decorative circle -->
+      <div class="pointer-events-none absolute -top-12 -right-12 size-48 rounded-full bg-white/10" aria-hidden="true"></div>
+
+      <!-- Card Top Content -->
+      <div class="relative z-[1]">
+        <span class="inline-block rounded-full bg-white/20 px-3 py-1 text-[0.7rem] font-bold tracking-wider uppercase text-white/95 backdrop-blur-xs">
+          100% Calidad y Cuidado Natural
+        </span>
+
+        <h3 class="mt-4 font-display text-[1.65rem] sm:text-[1.85rem] font-black leading-tight text-white">
+          Nutrición y bienestar para quienes más quieres
+        </h3>
+
+        <p class="mt-2 text-sm text-white/90 leading-relaxed max-w-[340px]">
+          Fórmulas horneadas naturales, ricas en nutrientes e ingredientes seleccionados para consentir a tus mascotas cada día.
+        </p>
+
+        <a
+          href="#productos"
+          class="mt-6 inline-flex items-center gap-2 self-start rounded-full bg-white px-5 py-2.5 font-display text-sm font-black text-ink shadow-md transition-all duration-200 hover:scale-105 hover:bg-gold-light active:scale-95 focus-visible:outline-[3px] focus-visible:outline-offset-2 focus-visible:outline-white"
+        >
+          Explorar tienda <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+
+      <!-- Card Bottom Illustration with the cute cat bag -->
+      <div class="relative z-[1] mt-6 flex justify-center items-end">
+        <div class="relative aspect-square w-full max-w-[210px] overflow-hidden rounded-2xl bg-white/15 p-2.5 border border-white/20 shadow-inner flex items-center justify-center">
+          <img
+            class="size-full rounded-xl object-contain"
+            src="/images/products/cat-food-bag.jpg"
+            alt="Alimento horneado natural para mascotas"
+            width="400"
+            height="400"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

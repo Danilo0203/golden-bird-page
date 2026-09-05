@@ -341,3 +341,67 @@ export const catalogProducts: CatalogProduct[] = [
   },
 ];
 
+export interface NewProduct {
+  id: string;
+  name: string;
+  category: string;
+  description: string;
+  price: string;
+  originalPrice: string;
+  image: string;
+  accentBg: string;
+  accentBorder: string;
+  tag?: string;
+}
+
+export const newProducts: NewProduct[] = [
+  {
+    id: 'new-1',
+    name: 'Beef & Veggie Mix Dry Dog Food',
+    category: 'DOG FOOD',
+    description: 'Fórmula nutritiva de carne y vegetales para perros activos.',
+    price: 'Q120.00',
+    originalPrice: 'Q200.00',
+    image: '/images/products/dog-food-bag.jpg',
+    accentBg: 'bg-[#edf6ed]',
+    accentBorder: 'border-[#cde5ca]',
+    tag: 'Nuevo',
+  },
+  {
+    id: 'new-2',
+    name: 'Balanced Chicken & Veggies Food',
+    category: 'DOG FOOD',
+    description: 'Pollo y verduras frescas con aporte controlado de granos.',
+    price: 'Q120.00',
+    originalPrice: 'Q200.00',
+    image: '/images/products/yellow-food-bag.jpg',
+    accentBg: 'bg-[#fcf2e0]',
+    accentBorder: 'border-[#ebd4ad]',
+    tag: 'Popular',
+  },
+  {
+    id: 'new-3',
+    name: 'Salmon & Sweet Potato Adult Food',
+    category: 'DOG FOOD',
+    description: 'Rico en Omega-3 para soporte articular y digestivo.',
+    price: 'Q120.00',
+    originalPrice: 'Q200.00',
+    image: '/images/products/blue-food-bag.jpg',
+    accentBg: 'bg-[#f3eef8]',
+    accentBorder: 'border-[#dfd3ee]',
+    tag: 'Destacado',
+  },
+  {
+    id: 'new-4',
+    name: 'Savory Chicken & Sweet Potato Treats',
+    category: 'DOG FOOD',
+    description: 'Premios crujientes 100% naturales horneados al sol.',
+    price: 'Q120.00',
+    originalPrice: 'Q200.00',
+    image: '/images/products/paper-bag-food.jpg',
+    accentBg: 'bg-[#fdf3e5]',
+    accentBorder: 'border-[#f2d5b6]',
+    tag: 'Oferta',
+  },
+];
+
