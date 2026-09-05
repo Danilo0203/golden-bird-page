@@ -1,25 +1,23 @@
 ---
-import type { FoodItem } from "../../../data/home";
+import { accent } from "../../../lib/accents";
+import type { ResolvedImage } from "../../../lib/site-content";
+import type { SiteFood } from "../../../lib/site-schema";
 
 interface Props {
-  item: FoodItem;
+  item: SiteFood;
+  photo: ResolvedImage;
   index: number;
 }
 
-const { item } = Astro.props;
-
-const photoPositions: Record<FoodItem["photo"], string> = {
-  seeds: "top-0 left-0",
-  pellets: "top-0 left-[-100%]",
-  millet: "top-0 left-[-200%]",
-};
+const { item, photo } = Astro.props;
+const colors = accent(item.accent);
 ---
 
 <article
   class:list={[
     "food-card group relative flex flex-col justify-between rounded-[28px] border p-4 sm:p-5 transition-[transform,box-shadow] duration-300 hover:-translate-y-1.5 hover:shadow-[0_16px_35px_#593e2118] shrink-0 w-[270px] sm:w-[290px] md:w-[310px] snap-start",
-    item.accentBg,
-    item.accentBorder,
+    colors.bg,
+    colors.border,
   ]}
 >
   <div>
@@ -38,14 +36,11 @@ const photoPositions: Record<FoodItem["photo"], string> = {
     <!-- Product Image Container -->
     <div class="product-photo relative aspect-square w-full overflow-hidden rounded-2xl bg-white p-3 shadow-xs transition-transform duration-300 group-hover:scale-[1.01]">
       <img
-        class:list={[
-          "absolute h-[200%] w-[300%] max-w-none object-fill transition-transform duration-300 group-hover:scale-105",
-          photoPositions[item.photo],
-        ]}
-        src="/images/bird-products.png"
-        alt={`${item.name} — presentación ilustrativa`}
-        width="1536"
-        height="1024"
+        class="size-full object-contain transition-transform duration-300 group-hover:scale-105"
+        src={photo.src}
+        alt={photo.alt}
+        width={photo.width}
+        height={photo.height}
         loading="lazy"
       />
     </div>
