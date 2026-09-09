@@ -28,6 +28,15 @@ export type SiteContent = {
   /** Las fotos ya resueltas a una URL servible; los componentes no saben de dónde salen. */
   images: Map<string, ResolvedImage>;
   source: ContentSource;
+  /**
+   * Cuándo se publicó lo que el sitio está sirviendo ahora mismo.
+   *
+   * Es lo que le permite al dashboard saber si su última publicación ya llegó
+   * hasta acá, en vez de pedirle a quien publica que espere y confíe. `null`
+   * cuando se está sirviendo el respaldo del repo, que no viene de ninguna
+   * publicación.
+   */
+  publishedAt: string | null;
 };
 
 let cached: { payload: SitePayload; at: number } | null = null;
@@ -93,7 +102,7 @@ function fromPayload(payload: SitePayload, source: ContentSource): SiteContent {
     });
   }
 
-  return { document: payload.document, images, source };
+  return { document: payload.document, images, source, publishedAt: payload.publishedAt };
 }
 
 function fromSeed(): SiteContent {
@@ -110,7 +119,7 @@ function fromSeed(): SiteContent {
     });
   }
 
-  return { document: SEED_DOCUMENT, images, source: 'seed' };
+  return { document: SEED_DOCUMENT, images, source: 'seed', publishedAt: null };
 }
 
 export async function getSiteContent(): Promise<SiteContent> {
