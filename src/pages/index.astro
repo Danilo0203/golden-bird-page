@@ -7,6 +7,7 @@ import FoodSection from '../components/sections/food/FoodSection.astro';
 import HeroSection from '../components/sections/hero/HeroSection.astro';
 import PetsSection from '../components/sections/pets/PetsSection.astro';
 import ProductsSection from '../components/sections/products/ProductsSection.astro';
+import RecentProductsSection from '../components/sections/products/RecentProductsSection.astro';
 import MainLayout from '../layouts/MainLayout.astro';
 import { getSiteContent } from '../lib/site-content';
 
@@ -29,6 +30,7 @@ const content = await getSiteContent();
     <AboutSection content={content} />
     <BirdsSection content={content} />
     <FoodSection content={content} />
+    <RecentProductsSection content={content} />
     <ProductsSection content={content} />
     <ClosingSection content={content} />
   </main>

@@ -143,6 +143,32 @@ const catalogProductSchema = z.object({
   imageId: imageIdSchema,
 });
 
+const recentProductsSchema = z.object({
+  title: headlineSchema,
+  // Una colección independiente: no requiere filtros del catálogo.
+  items: z.array(catalogProductSchema.omit({ categories: true })).max(12).superRefine((items, ctx) => {
+    const seen = new Set<string>();
+    for (const [index, item] of items.entries()) {
+      if (seen.has(item.id)) {
+        ctx.addIssue({ code: "custom", path: [index, "id"], message: "El identificador está repetido en productos recién agregados." });
+      }
+      seen.add(item.id);
+    }
+  }),
+});
+
+const emptyRecentProducts = () => ({
+  title: { lead: "Productos recién agregados" },
+  items: [],
+});
+
+// Compatibilidad con el título que antes se usaba para el catálogo completo.
+const availableProductsTitleSchema = headlineSchema.transform((title) =>
+  title.lead === "Productos recién agregados" && !title.highlight
+    ? { lead: "Productos disponibles" }
+    : title,
+);
+
 /**
  * Cada sección declara los campos que su diseño realmente muestra.
  *
@@ -189,10 +215,11 @@ export const siteDocumentSchema = z.object({
     items: z.array(foodSchema).min(1).max(24),
   }),
   products: z.object({
-    title: headlineSchema,
+    title: availableProductsTitleSchema,
     filters: z.array(catalogFilterSchema).min(1).max(12),
     items: z.array(catalogProductSchema).min(1).max(60),
   }),
+  recentProducts: recentProductsSchema.default(emptyRecentProducts),
   closing: z.object({
     eyebrow: line(80),
     title: headlineSchema,
