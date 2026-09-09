@@ -78,6 +78,22 @@ levantar el backend.
 En producción hay una cadena de respaldo, en este orden: contenido fresco, el
 último que sirvió, y el del repo. Una caída del backend no deja la página rota.
 
+En desarrollo, copiá `.env.example` a `.env` y reiniciá `pnpm dev`. El servidor
+lee `process.env`, que es lo que inyecta Railway; Astro por su cuenta solo carga
+el `.env` en `import.meta.env`, así que `astro.config.ts` lo pasa a `process.env`
+al arrancar. `pnpm start` no pasa por ese archivo de configuración: para probar
+el modo producción en local, exportá las variables antes de levantarlo.
+
+Para saber qué está sirviendo el sitio en este momento:
+
+```sh
+curl -H "x-revalidate-token: $SITE_REVALIDATE_TOKEN" localhost:4321/api/status
+```
+
+Responde con la fecha de la publicación que tiene en mano y de dónde salió:
+`api` (recién traída), `cache` (la última buena) o `seed` (el respaldo del repo).
+Si dice `seed` teniendo el backend arriba, el sitio no lo está alcanzando.
+
 ## Despliegue (Railway)
 
 El servicio ya existe y está conectado a este repo. Al pasar de estático a
