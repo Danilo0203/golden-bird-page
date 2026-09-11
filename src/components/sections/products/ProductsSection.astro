@@ -108,8 +108,9 @@ const { products } = content.document;
 
 <script>
   function setupCatalogFilters() {
-    const section = document.querySelector(".products");
-    if (!section) return;
+    const section = document.querySelector<HTMLElement>("#productos");
+    if (!section || section.dataset.filtersReady === "true") return;
+    section.dataset.filtersReady = "true";
 
     const filterButtons =
       section.querySelectorAll<HTMLButtonElement>(".filter-btn");
@@ -175,7 +176,11 @@ const { products } = content.document;
     });
   }
 
-  setupCatalogFilters();
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setupCatalogFilters, { once: true });
+  } else {
+    setupCatalogFilters();
+  }
   document.addEventListener("astro:page-load", setupCatalogFilters);
 </script>
 

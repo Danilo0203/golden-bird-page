@@ -267,6 +267,7 @@ export const SEED_DOCUMENT: SiteDocument = {
     "eyebrow": "AVES, MASCOTAS Y MÁS"
   },
   "version": 1,
+  recentProducts: { title: { lead: "Productos recién agregados" }, items: [] },
   "products": {
     "items": [
       {
@@ -371,7 +372,7 @@ export const SEED_DOCUMENT: SiteDocument = {
       }
     ],
     "title": {
-      "lead": "Productos recién agregados"
+      "lead": "Productos disponibles"
     },
     "filters": [
       {
